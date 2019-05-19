@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+
 //
 const db = new Sequelize('userdb', 'root', 'rbk6', {
   host: 'localhost',
@@ -6,7 +7,7 @@ const db = new Sequelize('userdb', 'root', 'rbk6', {
 });
 
 
-db.sync({ force: true, logging: false  }).then(() => {
+db.sync({ force: false, logging: false  }).then(() => {
     console.log(`Database & tables created!`)
 });
 
