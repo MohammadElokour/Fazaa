@@ -96,7 +96,7 @@ color: #ABA194; */
 
 .hdr {
 	text-align: center;
-	color: #99ced4;
+	color: #FBA100;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -143,6 +143,7 @@ color: #ABA194; */
 	border: 0;
 	outline: 0;
 	transition: 0.3s;
+	background-color: #D3D3D3
 }
 
 .btn {
@@ -154,7 +155,7 @@ color: #ABA194; */
 	outline: 0;
 	border: 0;
 	color: white;
-	background: #99ced3;
+	background: #FBA100;
 	transition: 0.3s;
 }
 
