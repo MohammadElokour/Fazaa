@@ -1,0 +1,210 @@
+body {
+	margin: 0;
+	background-color: #fff	;
+	
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #FBA100;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #414141;
+}
+
+#mainImg {
+	width: -webkit-fill-available;
+	height: 800px;
+}
+
+#firstImg {
+	border: 10px solid #6BBAA7;
+	border-radius: 50%;
+	height: 400px;
+	width: 600px;
+	margin-left: 15%;
+	margin-top: 150px;
+}
+
+#firstP {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 25px;
+	margin-top: 30%;
+}
+
+#secImg {
+	border: 10px solid #fedc3d;
+	border-radius: 50%;
+	height: 400px;
+	width: 600px;
+	margin-left: 15%;
+}
+
+#secP {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 25px;
+	margin-top: 12.5%;
+	margin-left: 30%;
+}
+
+#triImg {
+	border: 10px solid #6C648B;
+	border-radius: 50%;
+	height: 400px;
+	width: 600px;
+	margin-left: 15%;
+}
+
+#triP {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 25px;
+	margin-top: 11%;
+}
+
+/* font-family:   "Roboto";
+font-size:     14px;
+color: #ABA194; */
+
+.sign {
+	margin: 0px;
+	margin-left: 33%;
+	padding: 123px;
+	box-sizing: border-box;
+	text-align: center;
+	margin-top: 7.5%;
+}
+
+.hdr {
+	text-align: center;
+	color: #99ced4;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.user {
+	width: 90%;
+	max-width: 340px;
+}
+
+.user__header {
+	text-align: center;
+	opacity: 0;
+	transform: translate3d(0, 500px, 0);
+	animation: arrive 500ms ease-in-out 0.7s forwards;
+}
+
+.user__title {
+	font-size: 14px;
+	margin-bottom: -10px;
+	font-weight: 500;
+	color: white;
+}
+
+.form {
+	margin-top: 40px;
+	border-radius: 6px;
+	overflow: hidden;
+	opacity: 0;
+	transform: translate3d(0, 500px, 0);
+	animation: arrive 500ms ease-in-out 0.9s forwards;
+}
+
+.form--no {
+	animation: NO 1s ease-in-out;
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
+}
+
+.form__input {
+	display: block;
+	width: 100%;
+	padding: 20px;
+	font-family: Roboto;
+	-webkit-appearance: none;
+	border: 0;
+	outline: 0;
+	transition: 0.3s;
+}
+
+.btn {
+	display: block;
+	width: 100%;
+	padding: 20px;
+	font-family: Roboto;
+	-webkit-appearance: none;
+	outline: 0;
+	border: 0;
+	color: white;
+	background: #99ced3;
+	transition: 0.3s;
+}
+
+@keyframes NO {
+	from,
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: translate3d(-10px, 0, 0);
+		transform: translate3d(-10px, 0, 0);
+	}
+
+	20%,
+	40%,
+	60%,
+	80% {
+		-webkit-transform: translate3d(10px, 0, 0);
+		transform: translate3d(10px, 0, 0);
+	}
+}
+
+@keyframes arrive {
+	0% {
+		opacity: 0;
+		transform: translate3d(0, 50px, 0);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes move {
+	0% {
+		background-position: 0 0;
+	}
+
+	50% {
+		background-position: 100% 0;
+	}
+
+	100% {
+		background-position: 0 0;
+	}
+}
