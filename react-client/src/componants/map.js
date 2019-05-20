@@ -13,7 +13,6 @@ class MapOCanaan extends Component {
         }
         return (
         <div>
-            
             <div className="Mapo">
                 BEHOLD ! OUR MAAP~~~!<br/>
             {/* style these buttons, i added them to see if they work! */}
