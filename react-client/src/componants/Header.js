@@ -1,24 +1,25 @@
 import React ,{Component} from "react"
-// import {Link} from 'react-router';
+import { NavLink } from "react-router-dom" 
+// import {link, Switch, Route, BrowserRouter} from 'react-router-dom';
 class Header extends Component {
-  constructor(){
-    super()
-  }
   render(){
     return(
     <div>
       <ul>
           <li>
-            {/* <Link to={"/"}>Home</Link> */}
-           <a className="active" href="/">Home</a>
+            {/* <link to='/'>Home</link> */}
+           {/* <a className="active" href="/">Home</a> */}
+           <NavLink to="/" >Home</NavLink>
           </li>
           <li>
-            {/* <Link to={"/SignUp"}>SignUp</Link> */}
-            <a href="/SignUp">SignUp</a>
+            {/* <link to='/SignUp'>SignUp</link> */}
+            {/* <a href="/SignUp">SignUp</a> */}
+            <NavLink to="/signup" >SignUp</NavLink>
           </li>
         <li>
-        {/* <Link to={"/Login"}>Login </Link> */}
-        <a href="/Login">Login</a>
+        {/* <link to='/Login'>Login </link> */}
+        {/* <a href="/Login">Login</a> */}
+        <NavLink to="/login" >Login</NavLink>
         </li>
     </ul>
   </div>
