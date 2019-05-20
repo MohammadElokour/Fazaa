@@ -3,8 +3,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = express.json();
 const {User} = require('../database-mysql/models.js')
-const port  = process.env.PORT || 5000
-// const cors = require("cors");
+const port  = process.env.PORT || 9876
+const cors = require("cors");
+const { SECRET_KEY } = require('./secret.js');
 const app = express();
 
  app.use(express.static(__dirname + '/../react-client/dist'));
@@ -16,6 +17,13 @@ app.listen(port , ()=>{
 
 
 app.use(bodyParser);
+app.use(cors())
+
+
+
+
+
+////////API
 
 app.post('/signup', function(req, res) {
   var username = req.body.username;
@@ -32,7 +40,8 @@ app.post('/signup', function(req, res) {
     carPlateNumber:'',
     Role:''
     }).then(function(){
-      return res.status(201).send('Sign up successful');
+      return res.status(201).send("You have created an account Successfully");
+
   }).catch(function(err){
       if(err.name === "SequelizeUniqueConstraintError"){
           return res.status(400).send('username is already taken');
@@ -40,3 +49,4 @@ app.post('/signup', function(req, res) {
       return res.status(500).send(err);
   });
 });
+

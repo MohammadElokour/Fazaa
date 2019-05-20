@@ -1,20 +1,23 @@
 import React ,{Component} from "react"
-// import {link, Switch, Route, BrowserRouter} from 'react-router-dom';
+// import {Link} from 'react-router';
 class Header extends Component {
+  constructor(){
+    super()
+  }
   render(){
     return(
     <div>
       <ul>
           <li>
-            {/* <link to='/'>Home</link> */}
+            {/* <Link to={"/"}>Home</Link> */}
            <a className="active" href="/">Home</a>
           </li>
           <li>
-            {/* <link to='/SignUp'>SignUp</link> */}
+            {/* <Link to={"/SignUp"}>SignUp</Link> */}
             <a href="/SignUp">SignUp</a>
           </li>
         <li>
-        {/* <link to='/Login'>Login </link> */}
+        {/* <Link to={"/Login"}>Login </Link> */}
         <a href="/Login">Login</a>
         </li>
     </ul>
