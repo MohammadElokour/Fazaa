@@ -1,4 +1,5 @@
-import React ,{Component} from 'react';
+import React ,{Component} from "react";
+import {NavLink} from "react-router-dom";
 
 class SignUp extends Component {
 	constructor(props) {
@@ -51,10 +52,11 @@ class SignUp extends Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={event => this.onChange(event)} name="password" />
 						</div>
-
+					<NavLink  to="/login">
 						<button className="btn" type="button" onClick={() => this.postSignUp()}>
 							Sign Up
 						</button>
+					</NavLink>
 					</form>
 				</div>
 			</div>

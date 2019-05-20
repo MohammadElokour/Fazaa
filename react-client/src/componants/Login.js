@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import {NavLink} from "react-router-dom"
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-		
-		};
+		this.state = {};
 	}
 	render() {
 		return (
@@ -20,10 +19,11 @@ class Login extends React.Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" />
 						</div>
-
+				<NavLink to="/main-map">
 						<button className="btn" type="button">
 							Login
 						</button>
+				</NavLink>
 					</form>
 				</div>
 			</div>
