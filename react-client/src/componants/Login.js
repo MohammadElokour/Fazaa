@@ -1,13 +1,48 @@
-import React from 'react';
+import React from "react";
+import {NavLink} from "react-router-dom"
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		
+			username: '',
+			password: '',
+			errorMessage: ''
 		};
 	}
+
+	
+	login() {
+		//Call API to login with username and password
+		const body = {username: this.state.username, password: this.state.password};
+		fetch('http://127.0.0.1:9876/login', {
+			method: 'post',
+			body: JSON.stringify(body),
+			headers: {"Content-Type": "application/json"}
+		}).then((response) => {
+			return response.json();
+		}).then((body) => {
+			if(body.error){
+				if(body.error === 'Please sign in'){
+					return this.setState({username: '', password: '', errorMessage: ''})  
+				} else {
+					return this.setState({errorMessage: body.error})
+				}
+			}
+			//Got token
+			const token = body.token;
+			localStorage.setItem('token', token);
+			this.setState({username: '', password: '', errorMessage: ''});
+			this.getPlaces();
+		});
+	}
+	
+
+
+
+
 	render() {
+
 		return (
 			<div className="sign">
 				<div className="user">
@@ -20,10 +55,11 @@ class Login extends React.Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" />
 						</div>
-
+				<NavLink to="/main-map">
 						<button className="btn" type="button">
 							Login
 						</button>
+				</NavLink>
 					</form>
 				</div>
 			</div>

@@ -1,4 +1,5 @@
-import React ,{Component} from 'react';
+import React ,{Component} from "react";
+import {NavLink} from "react-router-dom";
 
 class SignUp extends Component {
 	constructor(props) {
@@ -19,10 +20,10 @@ class SignUp extends Component {
 	
 	postSignUp() {
 		const body = {username: this.state.username, email: this.state.email, password: this.state.password};
-    fetch('http://127.0.0.1:9875/signup', {
+    fetch('http://127.0.0.1:9876/signup', {
       method: 'post',
       body: JSON.stringify(body),
-      headers: {"Content-Type": "application/json"} 
+      headers: {"Content-Type": "application/json"}
     }).then((response) => {
       return response.text();
     }).then((textReply) => {
@@ -38,7 +39,7 @@ class SignUp extends Component {
 		return (
 			<div className="sign">
 				<div className="user">
-					<h1 className="hdr">Sign Up ^_^</h1>
+					<h1 className="hdr">Sign Up ^‿^</h1>
 					<form className="form">
 						<div className="form__group">
 							<input type="text" placeholder="Username" className="form__input" value={this.state.username} onChange={event => this.onChange(event)} name="username" />
@@ -51,10 +52,11 @@ class SignUp extends Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={event => this.onChange(event)} name="password" />
 						</div>
-
+					<NavLink  to="/login">
 						<button className="btn" type="button" onClick={() => this.postSignUp()}>
 							Sign Up
 						</button>
+					</NavLink>
 					</form>
 				</div>
 			</div>

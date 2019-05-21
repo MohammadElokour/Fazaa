@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack -d --watch",
+    "react-dev": "webpack -d --watch ",
     "server-dev": "nodemon server/server.js"
   },
   "author": "team-404",
