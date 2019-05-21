@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import {NavLink} from "react-router-dom"
+
 
 // it seems as i've consumed the api's limit ;-;, and now
  // we cant use the map.
@@ -16,7 +18,13 @@ class MapOCanaan extends Component {
             <div className="Mapo">
                 BEHOLD ! OUR MAAP~~~!<br/>
             {/* style these buttons, i added them to see if they work! */}
+               <br />
+               <br />
+               <br />
+               <br />
+               <NavLink to="/driver">
                 <button type="button" >DRIVER</button>
+               </NavLink>
                 <button type ="button">PASSENGER</button>
                 <Map
                 google = {this.props.google}
