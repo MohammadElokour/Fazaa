@@ -5,7 +5,7 @@ class HomePage extends Component {
 		return(
 
 	<div className="gallary">
-		<img id="mainImg" src="https://deepfriedads.com/wp-content/uploads/2016/09/traffic-1149857_1920CROP.jpg" alt="mainbackground" />
+		<img id="mainImg" src="" alt="mainbackground" />
 		<div className="row">
 			<div className="col-md-6">
 				<img
@@ -25,7 +25,7 @@ class HomePage extends Component {
 
 		<div className="row">
 			<div className="col-md-6">
-				<p id="secP">this is the 2nd paragraph and im happy yaaay</p>
+				<p id="secP"></p>
 			</div>
 			<div className="col-md-6">
 				<img
@@ -45,7 +45,7 @@ class HomePage extends Component {
 				/>
 			</div>
 			<div className="col-md-6">
-				<p id="triP">three tree three three thero</p>
+				<p id="triP"></p>
 			</div>
 		</div>
 	</div>
