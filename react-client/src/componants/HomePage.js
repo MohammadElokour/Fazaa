@@ -1,11 +1,11 @@
 import React ,{Component} from 'react';
-
+// import mg from "./fazaa.png";
 class HomePage extends Component {
 	render(){
 		return(
 
 	<div className="gallary">
-		<img id="mainImg" src="fazaa.png" alt="mainbackground" />
+		<img id="mainImg" src="https://deepfriedads.com/wp-content/uploads/2016/09/traffic-1149857_1920CROP.jpg" alt="mainbackground" />
 		<div className="row">
 			<div className="col-md-6">
 				<img
