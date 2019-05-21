@@ -33,14 +33,10 @@ class Login extends React.Component {
 			const token = body.token;
 			localStorage.setItem('token', token);
 			this.setState({username: '', password: '', errorMessage: ''});
-			this.getPlaces();
+
 		});
 	}
 	
-
-
-
-
 	render() {
 
 		return (
@@ -55,11 +51,11 @@ class Login extends React.Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" />
 						</div>
-				<NavLink to="/main-map">
-						<button className="btn" type="button">
+				{/* <NavLink to="/main-map"> */}
+						<button className="btn" type="button" onClick={() => this.login()}>
 							Login
 						</button>
-				</NavLink>
+				{/* </NavLink> */}
 					</form>
 				</div>
 			</div>
