@@ -39,7 +39,7 @@ class SignUp extends Component {
 		return (
 			<div className="sign">
 				<div className="user">
-					<h1 className="hdr">Sign Up ^_^</h1>
+					<h1 className="hdr">Sign Up ^‿^</h1>
 					<form className="form">
 						<div className="form__group">
 							<input type="text" placeholder="Username" className="form__input" value={this.state.username} onChange={event => this.onChange(event)} name="username" />

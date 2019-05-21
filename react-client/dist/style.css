@@ -78,12 +78,9 @@ li a {
 #triP {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	font-size: 25px;
-	margin-top: 11%;
+	margin-top: 13%;
 }
 
-/* font-family:   "Roboto";
-font-size:     14px;
-color: #ABA194; */
 
 .sign {
 	margin: 0px;
@@ -208,4 +205,33 @@ color: #ABA194; */
 	100% {
 		background-position: 0 0;
 	}
+}
+
+#footer {
+	margin-top: 4%;
+	border: -10px solid #FBA100 ;	
+	z-index: -1;
+}
+
+#rights {
+	color: white;
+	background-color: #FBA100;
+	margin-top: 0;
+	margin-bottom: 0;
+	width: 400px;
+}
+
+#footerLogo {
+	float: right;
+	margin-top: -3%;
+	width: 150px;
+	margin-right: 1%;
+}
+
+#contact {
+	color: white;
+    background-color: #FBA100;
+    text-align: center;
+    margin-top: -2%;
+    margin-bottom: 0%;
 }
