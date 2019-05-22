@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = express.json();
 const { User } = require('../database-mysql/models.js');
-const port = process.env.PORT || 9875;
+const port = process.env.PORT || 9876;
 const cors = require('cors');
 const { SECRET_KEY } = require('./secret.js');
 const app = express();
@@ -56,10 +56,14 @@ app.post('/signup', function(req, res) {
 		username: username,
 		email: email,
 		password: hashedPassword,
-		location: '',
-		destination: '',
+		loc_Lat: '',
+		loc_Lng: '',
+		dest_Lat: '',
+		dest_Lng: '',
 		phoneNumber: '',
 		carPlateNumber: '',
+		carType: '',
+		carColor: '',
 		Role: '',
 	})
 		.then(function() {
@@ -69,7 +73,7 @@ app.post('/signup', function(req, res) {
 			if (err.name === 'SequelizeUniqueConstraintError') {
 				return res.status(400).send('username is already taken');
 			}
-			return res.status(500).send('Server Error');
+			return res.status(500).send(err);
 		});
 });
 

@@ -4,6 +4,17 @@ body {
 	
 }
 
+
+/* Tablet Landscape */
+/* @media screen and (max-width: 1060px) { */
+    /* #primary { width:67%; } */
+    /* #secondary { width:30%; margin-left:3%;}   */
+/* } */
+/* Tabled Portrait */
+/* @media screen and (max-width: 768px) { */
+    /* #primary { width:100%; } */
+    /* #secondary { width:100%; margin:0; border:none; } */
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -33,15 +44,15 @@ li a {
 }
 
 #mainImg {
-	width: -webkit-fill-available;
-	height: 800px;
+	width: 100%;
+	height: 30%;
 }
 
 #firstImg {
 	border: 10px solid #6BBAA7;
 	border-radius: 50%;
-	height: 400px;
-	width: 600px;
+	height: 80%;
+	width: 80%;
 	margin-left: 15%;
 	margin-top: 150px;
 }
@@ -55,8 +66,8 @@ li a {
 #secImg {
 	border: 10px solid #fedc3d;
 	border-radius: 50%;
-	height: 400px;
-	width: 600px;
+	height: 100%;
+	width: 80%;
 	margin-left: 15%;
 }
 
@@ -70,8 +81,8 @@ li a {
 #triImg {
 	border: 10px solid #6C648B;
 	border-radius: 50%;
-	height: 400px;
-	width: 600px;
+	height: 115%;
+	width: 80%;
 	margin-left: 15%;
 }
 

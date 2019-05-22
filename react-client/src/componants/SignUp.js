@@ -75,11 +75,11 @@ class SignUp extends Component {
 								name="password"
 							/>
 						</div>
-						<NavLink to="/login">
-							<button className="btn" type="button" onClick={() => this.postSignUp()}>
-								Sign Up
-							</button>
-						</NavLink>
+						{/* <NavLink  to="/login"> */}
+						<button className="btn" type="button" onClick={() => this.postSignUp()}>
+							Sign Up
+						</button>
+						{/* </NavLink> */}
 					</form>
 				</div>
 			</div>
