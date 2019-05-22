@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import { browserHistory} from "react-router";
+// import { browserHistory} from "react-router";
 import { BrowserRouter  , Route, Switch  } from "react-router-dom"
 
 
@@ -15,8 +15,13 @@ import map from "./componants/map";
 class App extends Component {
  constructor(props){
    super(props)
+   this.state={
+    whatPageToShow: 'Homepage'
+   }
  
-  } 
+  }
+  
+
   
   render(){
     return (
@@ -27,7 +32,7 @@ class App extends Component {
               <Route path="/signup" component={SignUp} />
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={Login} />
-              <Route path="/main-map" component={map} />
+              {/* <Route path="/main-map" component={map} /> */}
         </div>
       </BrowserRouter>
      

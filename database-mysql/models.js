@@ -9,7 +9,7 @@ const User = db.define('user', {
     loc_Lat:{type:Sequelize.STRING,require:true},
     loc_Lng:{type:Sequelize.STRING,require:true},
     dest_Lat:{type:Sequelize.STRING},
-    dest_Lat:{type:Sequelize.STRING},
+    dest_Lng:{type:Sequelize.STRING},
     phoneNumber:{type:Sequelize.STRING,require:true},
     carPlateNumber:{type:Sequelize.STRING},
     carType:{type:Sequelize.STRING},

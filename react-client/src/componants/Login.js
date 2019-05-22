@@ -7,35 +7,50 @@ class Login extends React.Component {
 		this.state = {
 			username: '',
 			password: '',
-			errorMessage: ''
+			errorMessage: '',
+			token:""
 		};
 	}
-
+	getPlaces(){
+		fetch('http://127.0.0.1:9876/places', {
+		  method: 'get',
+		  headers: {"Content-Type": "application/json"}
+		  // {"x-access-token": token }
+		}).then((response) => {
+		  return response.json();
+		}).then((body) => {
+		  console.log(body);
+		  if(body.error){
+			return this.setState({errorMessage: body.error})
+		  };
+		  return "hi"
+		})
+	  }
 	
 	login() {
-		//Call API to login with username and password
+		//Call API to sign in with username and password
 		const body = {username: this.state.username, password: this.state.password};
-		fetch('http://127.0.0.1:9876/login', {
-			method: 'post',
-			body: JSON.stringify(body),
-			headers: {"Content-Type": "application/json"}
+		fetch('http://127.0.0.1:9876/signin', {
+		  method: 'post',
+		  body: JSON.stringify(body),
+		  headers: {"Content-Type": "application/json"}
 		}).then((response) => {
-			return response.json();
+		  return response.json();
 		}).then((body) => {
-			if(body.error){
-				if(body.error === 'Please sign in'){
-					return this.setState({username: '', password: '', errorMessage: ''})  
-				} else {
-					return this.setState({errorMessage: body.error})
-				}
+		  if(body.error){
+			if(body.error === 'Please sign in'){
+			  return this.setState({ username: '', password: '', errorMessage: ''})  
+			} else {
+			  return this.setState({errorMessage: body.error})
 			}
-			//Got token
-			const token = body.token;
-			localStorage.setItem('token', token);
-			this.setState({username: '', password: '', errorMessage: ''});
-
+		  }
+		  //Got token
+		  const token = body.token;
+		  localStorage.setItem('token', token);
+		  this.setState({username: '', password: '', errorMessage: ''});
+		  this.getPlaces();
 		});
-	}
+	  }
 	
 	render() {
 
