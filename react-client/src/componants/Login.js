@@ -1,5 +1,5 @@
-import React from "react";
-import {NavLink} from "react-router-dom"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -7,38 +7,37 @@ class Login extends React.Component {
 		this.state = {
 			username: '',
 			password: '',
-			errorMessage: ''
+			errorMessage: '',
 		};
 	}
 
-	
 	login() {
 		//Call API to login with username and password
-		const body = {username: this.state.username, password: this.state.password};
-		fetch('http://127.0.0.1:9876/login', {
+		const body = { username: this.state.username, password: this.state.password };
+		fetch('/login', {
 			method: 'post',
 			body: JSON.stringify(body),
-			headers: {"Content-Type": "application/json"}
-		}).then((response) => {
-			return response.json();
-		}).then((body) => {
-			if(body.error){
-				if(body.error === 'Please sign in'){
-					return this.setState({username: '', password: '', errorMessage: ''})  
-				} else {
-					return this.setState({errorMessage: body.error})
+			headers: { 'Content-Type': 'application/json' },
+		})
+			.then(response => {
+				return response.json();
+			})
+			.then(body => {
+				if (body.error) {
+					if (body.error === 'Please sign in') {
+						return this.setState({ username: '', password: '', errorMessage: '' });
+					} else {
+						return this.setState({ errorMessage: body.error });
+					}
 				}
-			}
-			//Got token
-			const token = body.token;
-			localStorage.setItem('token', token);
-			this.setState({username: '', password: '', errorMessage: ''});
-
-		});
+				//Got token
+				const token = body.token;
+				localStorage.setItem('token', token);
+				this.setState({ username: '', password: '', errorMessage: '' });
+			});
 	}
-	
-	render() {
 
+	render() {
 		return (
 			<div className="sign">
 				<div className="user">
@@ -51,11 +50,11 @@ class Login extends React.Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" />
 						</div>
-				{/* <NavLink to="/main-map"> */}
+						{/* <NavLink to="/main-map"> */}
 						<button className="btn" type="button" onClick={() => this.login()}>
 							Login
 						</button>
-				{/* </NavLink> */}
+						{/* </NavLink> */}
 					</form>
 				</div>
 			</div>
