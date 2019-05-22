@@ -8,7 +8,8 @@ import Header from './componants/Header';
 import HomePage from './componants/HomePage';
 import SignUp from './componants/SignUp';
 import Login from './componants/Login';
-import Map from './componants/map'
+import {unregister} from './componants/Interceptor'
+
 import map from "./componants/map";
 import Driver from "./componants/driver-page"
 

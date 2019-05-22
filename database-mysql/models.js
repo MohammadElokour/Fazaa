@@ -1,7 +1,7 @@
 
 const { db, Sequelize } = require('./db.js');
 //  Database Schema 
-const User = db.define('user', {
+const User = db.define('userdb', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
     username: {type: Sequelize.STRING, required: true, unique: true},
     email:{type:Sequelize.STRING, require:true,unique:true},

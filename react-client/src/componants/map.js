@@ -1,52 +1,98 @@
+
 import React, {Component} from 'react';
-import {Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import CurrentLocation from './currentLocation';
 import {NavLink} from "react-router-dom"
 
 
-// it seems as i've consumed the api's limit ;-;, and now
- // we cant use the map.
+// the class tha'll hold our map
+class MapContainer extends React.Component {
+constructor(props){
+  super(props)
+    this.state = {
+        // if it's already showing one
+        showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {}
+    }
 
-class MapOCanaan extends Component {
-    render () {
-        //the map's style
-        const style = {
-            width:'450px',
-            height: '450px',
-        }
+}
+
+    // the function that'll run when you click on the marker
+    onMarkerClick(props, marker, e){
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+
+    }       // when you close the marker's infoWindow
+            onClose (props){
+                if(this.state.showingInfoWindow) {
+                    this.setState({
+                        showingInfoWindow: false,
+                        activeMarker:null
+                    })
+                }
+            }
+
+    render() {
         return (
-        <div>
-            <div className="Mapo">
-                BEHOLD ! OUR MAAP~~~!<br/>
-            {/* style these buttons, i added them to see if they work! */}
-               <br />
-               <br />
-               <br />
-               <br />
-               <NavLink to="/driver">
-                <button type="button" >DRIVER</button>
-               </NavLink>
+            <div>
+                <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <NavLink to="/driver">
+                    <button type="button" >DRIVER</button>
+                </NavLink>
                 <button type ="button">PASSENGER</button>
-                <Map
-                google = {this.props.google}
-                // the zoom level
-                zoom={15}
-                // the location, it's amman !
-                initialCenter = {{
+            </div>
+
+            //  the current location is the geolocatoin functionality
+            <CurrentLocation
+        centerAroundCurrentLocation
+        google={this.props.google}
+                >
+
+        {/* a custom placed marker that shows the device's current location  */}
+        <Marker onClick={this.onMarkerClick.bind(this)} name={'current location'} />
+        {/* a custom marker that'll show Amman */}
+        <Marker
+                onClick={this.onMarkerClick.bind(this)} name={'you dare ?...YOU DARE !!!'}
+                position={{
                     lat: 31.9454,
                     lng: 35.9284
                 }}
-                // applying the styling
-                style = {style}
-                />
+            />
+            {/* a custom marker that'll show Irbid */}
+        <Marker
+                onClick={this.onMarkerClick.bind(this)} 
+                name={"Irbid"}
+                position ={{
+                     lat: 32.5570 ,
+                     lng : 35.8479
+                }}
+            />
+        {/* Calling the build in InfoWindow component */}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+          {/* this's what appears in the InfoWindo dialoge box */}
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
+      </CurrentLocation>
             </div>
-            
-        </div>
-        )
-    }
-} 
+    );
+  }
+}
+        
 
-// not sure 100% what this does
 export default GoogleApiWrapper({
-    // my maps api
-    apiKey: ('AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po')
-})(MapOCanaan); // exporting the map component!!
+    apiKey : "AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po"
+})(MapContainer)

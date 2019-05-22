@@ -24,6 +24,32 @@ app.listen(port, () => {
 app.use(bodyParser.json())
 app.use(cors())
 
+//middleware
+const authenticate = function(req, res, next){
+  const token = req.headers['x-access-token']; //Username encoded in token
+  if(!token){
+      return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+  }
+  jwt.verify(token, SECRET_KEY, function(err, decodedToken){
+      //If err, token invalid
+      if(err){
+          return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+      }
+      //Check if user exists in the database
+      const username = decodedToken.username;
+      User.findOne({username: username}).then(function(user){
+          console.log(user);
+          if(!user){
+              return res.status(HTTP_UNAUTHORIZED).send('Please sign up');
+          }
+          req.body.user = user; //Put user in req.body
+          return next();
+      }).catch(function(err){
+          return res.status(HTTP_SERVER_ERROR).send(err);
+      })
+  });
+};
+
 
 
 
@@ -65,3 +91,27 @@ app.post('/signup', function (req, res) {
     return res.status(500).send(err);
   });
 });
+
+app.post('/login', function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  //Check if user exists in the database
+  User.findOne({where: {username: username}}).then(function(user){
+      if(!user){
+          return res.status(401).send({error: 'Please sign up'}); 
+      }
+      //Compare with stored password
+      const existingHashedPassword = user.password;
+      bcrypt.compare(password, existingHashedPassword).then(function(isMatching){
+          if(isMatching){
+              //Create a token and send to client
+              const token = jwt.sign({username: user.username}, SECRET_KEY, {expiresIn: 4000});
+              return res.send({token: token});
+          } else {
+              return res.status(401).send({error: 'Wrong password'});
+          }
+      });
+  });
+  
+});
+
