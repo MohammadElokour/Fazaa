@@ -115,3 +115,11 @@ app.post('/login', function(req, res) {
   
 });
 
+
+app.post('/places', authenticate, function(req, res) {
+  res.send("yaay")
+});
+app.get('/places', authenticate, function(req, res) {
+  res.send("yaaaaaaaaaaaaaay")
+});
+

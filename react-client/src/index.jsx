@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import { browserHistory} from "react-router";
+// import { browserHistory} from "react-router";
 import { BrowserRouter  , Route, Switch  } from "react-router-dom"
 
 
@@ -9,15 +9,19 @@ import HomePage from './componants/HomePage';
 import SignUp from './componants/SignUp';
 import Login from './componants/Login';
 import {unregister} from './componants/Interceptor'
-
 import map from "./componants/map";
 import Driver from "./componants/driver-page"
 
 class App extends Component {
  constructor(props){
    super(props)
+   this.state={
+    whatPageToShow: 'Homepage'
+   }
  
-  } 
+  }
+  
+
   
   render(){
     return (
