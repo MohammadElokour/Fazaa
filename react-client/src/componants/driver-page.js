@@ -9,11 +9,8 @@ class Driver extends Component{
             carPlateNumber:'',
             carType:'',
             carColor:'',
-<<<<<<< HEAD
-            payment:'No'
-=======
+            payment:'No',
             Role:'driver'
->>>>>>> 025aa830b729e75cd03bd38474ca248825a70f34
         }
     }
     //
@@ -23,24 +20,6 @@ class Driver extends Component{
         });
     }
 
-    onclick(){
-<<<<<<< HEAD
-      var data = this.state
-      $.ajax({
-        type: "POST",
-        url: "/saveCar",
-        data: {data},
-        success: ()=>{
-            console.log("saved")
-        },
-        dataType: 'json'
-      });
-    };
-    payment(e){
-      this.setState({
-        payment:e.target.value
-      })
-    };
     updatePay(){
       
       var username=localStorage.getItem('username');
@@ -53,19 +32,20 @@ class Driver extends Component{
     }).then((response) => {
       return response.text();
     })
-=======
-        var data =this.state
-        var token = localStorage.getItem('token') 
+    }
 
-        console.log(localStorage.getItem('token'))
-        fetch('http://127.0.0.1:9876/driver', {
-            method: 'put',
-            body: JSON.stringify({data}),
-            headers: {"Content-Type": "application/json",
-        token: token }
+    onclick(){
+      var data =this.state
+      var token = localStorage.getItem('token') 
 
-          })
->>>>>>> 025aa830b729e75cd03bd38474ca248825a70f34
+      console.log(localStorage.getItem('token'))
+      fetch('http://127.0.0.1:9876/driver', {
+          method: 'put',
+          body: JSON.stringify({data}),
+          headers: {"Content-Type": "application/json",
+      token: token }
+
+        })
     }
 
     deleteR(){
@@ -92,22 +72,17 @@ class Driver extends Component{
                 <input type="text" name="carPlateNumber" value={this.state.carPlateNumbers} placeholder="Car Plate Number" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carType" value={this.state.carTypes} placeholder="Car Type" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carColor" value={this.state.carColors} placeholder="Car Color" className="form__input" onChange={this.onchange.bind(this)} />
-
-<<<<<<< HEAD
-                <button className="btn" type="button">Save</button>
                 <label>
                 Do you want passengers to pay (yes/no):
-                <input type="text" placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.payment.bind(this)}/>
+                <input type="text" name='payment' placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.onchange.bind(this)}/>
                 {/* <select>
                   <option value="this.state.payment" onChange={this.payment.bind(this)}> Yes </option>
                   <option value="this.state.payment" onChange={this.payment.bind(this)}> No </option>
                 </select> */}
                 </label>
                 <button type='button' onClick={this.updatePay.bind(this)}>confirm</button>
-                <button type='button' onclick={this.deleteR.bind(this)}>cancel</button>
-=======
+                <button type='button' onClick={this.deleteR.bind(this)}>cancel</button>
                 <button onClick={this.onclick.bind(this)} className="btn" type="button">Save</button>
->>>>>>> 025aa830b729e75cd03bd38474ca248825a70f34
             </div>
         )
     }

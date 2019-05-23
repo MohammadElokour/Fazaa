@@ -147,13 +147,6 @@ User.update({payment:req.body.payment},
   })
 });
 
-app.put("/driverUpdate",function(req,res){
-  User.update({Role:req.body.role},
-    {where:{username:req.body.username}}).then(function(){
-      console.log("role updated")
-    })
-  });
-
   app.put("/passenger",function(req,res){
     User.update({Role:req.body.role2},
       {where:{username:req.body.username}}).then(function(){
