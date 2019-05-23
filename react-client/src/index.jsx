@@ -11,12 +11,15 @@ import Login from './componants/Login';
 import {unregister} from './componants/Interceptor'
 import Map from './componants/map'
 import map from "./componants/map";
+import Driver from "./componants/driver-page"
+import About from "./componants/about"
 
 class App extends Component {
  constructor(props){
    super(props)
    this.state={
-    whatPageToShow: 'Homepage'
+    whatPageToShow: 'Homepage',
+    errorMessage: ''
    }
  
   }
@@ -25,6 +28,7 @@ class App extends Component {
   
   render(){
     return (
+      <div>
       <BrowserRouter>
         <div>
           <Header/>
@@ -32,12 +36,14 @@ class App extends Component {
               <Route path="/signup" component={SignUp} />
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={Login} />
-              {/* <Route path="/main-map" component={map} /> */}
+              <Route path="/main-map" component={map} />
+              <Route path="/about" component={About}/>
+
         </div>
       </BrowserRouter>
      
-     
-      // <Header />
+      </div>
+      
       // <BrowserRouter history={browserHistory}>
       //   <Route path={"/homepage"} Component={HomePage} />
       //   <Route path={"/signup"} Component={SignUp}  />

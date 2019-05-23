@@ -6,15 +6,16 @@ const User = db.define('user', {
     username: {type: Sequelize.STRING, required: true, unique: true},
     email:{type:Sequelize.STRING, require:true,unique:true},
     password: {type: Sequelize.STRING, required: true},
-    loc_Lat:{type:Sequelize.STRING,require:true},
-    loc_Lng:{type:Sequelize.STRING,require:true},
+    loc_Lat:{type:Sequelize.STRING},
+    loc_Lng:{type:Sequelize.STRING},
     dest_Lat:{type:Sequelize.STRING},
     dest_Lng:{type:Sequelize.STRING},
-    phoneNumber:{type:Sequelize.STRING,require:true},
-    carPlateNumber:{type:Sequelize.STRING},
+    phoneNumber:{type:Sequelize.STRING},
+    carPlateNumber:{type:Sequelize.INTEGER},
     carType:{type:Sequelize.STRING},
     carColor:{type:Sequelize.STRING},
-    Role:{type:Sequelize.STRING}
+    Role:{type:Sequelize.STRING},
+    payment:{type: Sequelize.STRING}
 
 });
 

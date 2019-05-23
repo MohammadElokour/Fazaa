@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+var path = require('path');
 const bodyParser = express.json();
 const {User} = require('../database-mysql/models.js')
 const port  = process.env.PORT || 9876
@@ -59,16 +60,7 @@ app.post('/signup', function(req, res) {
   User.create({
     username: username,
     email:email,
-    password: hashedPassword,
-    loc_Lat:'',
-    loc_Lng:'',
-    dest_Lat:'',
-    dest_Lng:'',
-    phoneNumber:'',
-    carPlateNumber:'',
-    carType:'',
-    carColor:'',
-    Role:''
+    password: hashedPassword
     }).then(function(){
       return res.status(201).send("You have created an account Successfully");
 
@@ -80,11 +72,16 @@ app.post('/signup', function(req, res) {
   });
 });
 
+app.get('/LoginForm.html', function (req, res) {
+  res.sendFile(__dirname + path.resolve('componants/SignUp.js'));
+});
+
 
 app.post('/login', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
   //Check if user exists in the database
+  console.log(username);
   User.findOne({where: {username: username}}).then(function(user){
       if(!user){
           return res.status(401).send({error: 'Please sign up'}); 
@@ -95,7 +92,7 @@ app.post('/login', function(req, res) {
           if(isMatching){
               //Create a token and send to client
               const token = jwt.sign({username: user.username}, SECRET_KEY, {expiresIn: 4000});
-              return res.send({token: token});
+              return res.send({token: token,username:req.body.username});
           } else {
               return res.status(401).send({error: 'Wrong password'});
           }
@@ -103,6 +100,9 @@ app.post('/login', function(req, res) {
   });
   
 });
+// app.get('/Login', function (req, res) {
+//   res.sendFile(__dirname + '/../componants/Login.js');
+// });
 
 
 app.post('/places', authenticate, function(req, res) {
@@ -112,3 +112,33 @@ app.get('/places', authenticate, function(req, res) {
   res.send("yaaaaaaaaaaaaaay")
 });
 
+
+app.put("/payment",function(req,res){
+User.update({payment:req.body.payment},
+  {where:{username:req.body.username}}).then(function(){
+    console.log("payment updated")
+  }).catch(function(err){
+    return res.send(err)
+  })
+});
+
+app.put("/driver",function(req,res){
+  User.update({Role:req.body.role},
+    {where:{username:req.body.username}}).then(function(){
+      console.log("role updated")
+    })
+  });
+
+  app.put("/passenger",function(req,res){
+    User.update({Role:req.body.role2},
+      {where:{username:req.body.username}}).then(function(){
+        console.log("role updated")
+      })
+    });
+
+  app.put("/deleteRole",function(req,res){
+    User.update({Role:null},
+      {where:{username:req.body.username}}).then(function(){
+        console.log("role deleted")
+      })
+  });
