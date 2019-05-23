@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom"
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			username: '',
 			password: '',
@@ -58,7 +59,11 @@ class Login extends React.Component {
 		  }
 		  //Got token
 		  const token = body.token;
-		  const username=body.username
+			const username=body.username
+			
+			this.props.callBack(token);
+			// Token --> Map --> Header, --> Access reaqct 
+
 		  localStorage.setItem('token', token);
 		  localStorage.setItem('username', username);
 		  this.setState({username: '', password: '', errorMessage: ''});

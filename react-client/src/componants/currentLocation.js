@@ -94,6 +94,33 @@ class CurrentLocation extends React.Component {
             // maps.Map() is contructor that instantiates the map
             this.map = new maps.Map(node, mapConfig);
         }
+
+              
+        const body = {
+            Loc_Lat: this.state.CurrentLocation.lat,
+            Loc_Lng: this.state.CurrentLocation.lng
+        };
+
+        // console.log('Fetching!');
+        fetch('/main-map', {
+            method: 'put',
+            body:JSON.stringify(body),
+            headers: {"Content-Type" : "application/json",
+                        "Token": this.props.getTokenFromParentMap()}
+        });
+
+        /*
+            * Fixed Login
+            * Fixed Database Update
+        
+            - Created a login Callback for the communication between the login and index { Parent }
+            - Rewritten how we render the Route in index.js to pass the callback to the login
+            - Called the callBack function insdie the login page and passed the token to it ( that made the parent aware of the token )
+            - Created a map callBack for the token and Rewritten the route render in index.js to pass the route
+            - Created a currentLocation callBack for the token and passed the data from the map to the fetch function to update the db
+
+        */
+
     }
 
 
@@ -102,6 +129,20 @@ class CurrentLocation extends React.Component {
         // console.log(children)
 
         if(!children) return;
+        
+        // const body = {
+        //     Loc_Lat: this.state.CurrentLocation.lat,
+        //     Loc_Lng: this.state.CurrentLocation.lng
+        // };
+
+        // // console.log('Fetching!');
+        // fetch('http://127.0.0.1:9876/main-map', {
+        //     method: 'put',
+        //     body:JSON.stringify(body),
+        //     headers: {"Content-Type" : "application/json"}
+        // });
+
+        // console.log(body);
 
         return React.Children.map(children, c => {
             if(!c) return;
