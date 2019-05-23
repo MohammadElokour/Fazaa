@@ -39,7 +39,6 @@ onchange(e){
 			localStorage.setItem('token',token);
 			console.log(token);
 		  this.setState({username: '', password: '', errorMessage: ''});
-		  this.getPlaces();
 		});
 	  }
 	
