@@ -14,7 +14,8 @@ const User = db.define('usersdb', {
     carPlateNumber:{type:Sequelize.STRING},
     carType:{type:Sequelize.STRING},
     carColor:{type:Sequelize.STRING},
-    Role:{type:Sequelize.STRING}
+    Role:{type:Sequelize.STRING},
+    payment:{type: Sequelize.STRING}
 
 });
 

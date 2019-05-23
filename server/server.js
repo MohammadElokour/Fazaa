@@ -82,67 +82,52 @@ app.post('/signup', function (req, res) {
   var hashedPassword = bcrypt.hashSync(pass, 3);
   User.create({
     username: username,
-    email: email,
-    password: hashedPassword,
-    loc_Lat: null,
-    loc_Lng: null,
-    dest_Lat: null,
-    dest_Lat: null,
-    phoneNumber: null,
-    carPlateNumber: null,
-    carType: null,
-    carColor: null,
-    Role: null
-  }).then(function () {
-    return res.status(201).send("You have created an account Successfully");
+    email:email,
+    password: hashedPassword
+    }).then(function(){
+      return res.status(201).send("You have created an account Successfully");
 
-  }).catch(function (err) {
-    if (err.name === "SequelizeUniqueConstraintError") {
-      return res.status(400).send('username is already taken');
-    }
-    return res.status(500).send(err);
+  }).catch(function(err){
+      if(err.name === "SequelizeUniqueConstraintError"){
+          return res.status(400).send('username is already taken');
+      }
+      return res.status(500).send(err);
   });
 });
 
-app.post('/login', function (req, res) {
+// app.get('/', function (req, res) {
+//   res.sendFile(__dirname + path.resolve('componants/SignUp.js'));
+// });
+
+
+app.post('/login', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
   //Check if user exists in the database
-  console.log(req.body, "  h1")
-
-
-  User.findOne({
-    where: {
-      username: username
-
-    }
-  }).then(function (user) {
-    //Compare with stored password
-    const existingHashedPassword = user.password;
-    bcrypt.compare(password, existingHashedPassword).then(function (isMatching) {
-      console.log(isMatching)
-      if (isMatching) {
-        //Create a token and send to client
-        const token = jwt.sign({
-          username: user.username
-        }, SECRET_KEY, {
-          expiresIn: 6666
-        });
-        return res.send({
-          token
-        })
-      } else {
-        console.log("go to your home, yasser")
-        return res.status(401).send({
-          error: 'Wrong password'
-        });
+  console.log(username);
+  User.findOne({where: {username: username}}).then(function(user){
+      if(!user){
+          return res.status(401).send({error: 'Please sign up'}); 
       }
-    });
+      //Compare with stored password
+      const existingHashedPassword = user.password;
+      bcrypt.compare(password, existingHashedPassword).then(function(isMatching){
+          if(isMatching){
+              //Create a token and send to client
+              const token = jwt.sign({username: user.username}, SECRET_KEY, {expiresIn: 4000});
+              return res.send({token: token,username:req.body.username});
+          } else {
+              return res.status(401).send({error: 'Wrong password'});
+          }
+      });
   }).catch(function (err) {
     console.log("go sigup ya FoOlL!")
   })
-
+  
 });
+// app.get('/Login', function (req, res) {
+//   res.sendFile(__dirname + '/../componants/Login.js');
+// });
 
 
 app.post('/places', authenticate, function (req, res) {
@@ -151,3 +136,27 @@ app.post('/places', authenticate, function (req, res) {
 app.get('/places', authenticate, function (req, res) {
   res.send("yaaaaaaaaaaaaaay")
 });
+
+
+app.put("/payment",function(req,res){
+User.update({payment:req.body.payment},
+  {where:{username:req.body.username}}).then(function(){
+    console.log("payment updated")
+  }).catch(function(err){
+    return res.send(err)
+  })
+});
+
+  app.put("/passenger",function(req,res){
+    User.update({Role:req.body.role2},
+      {where:{username:req.body.username}}).then(function(){
+        console.log("role updated")
+      })
+    });
+
+  app.put("/deleteRole",function(req,res){
+    User.update({Role:null},
+      {where:{username:req.body.username}}).then(function(){
+        console.log("role deleted")
+      })
+  });
