@@ -47,7 +47,9 @@ constructor(props){
                 <NavLink to="/driver">
                     <button type="button" >DRIVER</button>
                 </NavLink>
+                <NavLink to="/passenger">
                 <button type ="button">PASSENGER</button>
+                </NavLink>
             </div>
 
             //  the current location is the geolocatoin functionality
