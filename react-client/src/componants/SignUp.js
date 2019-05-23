@@ -8,7 +8,7 @@ class SignUp extends Component {
 			username: '',
 			email: '',
 			password: '',
-			errorMessage: ''
+			
 		};
 	}
 

@@ -13,11 +13,24 @@ constructor(props){
         // if it's already showing one
         showingInfoWindow: false,
         activeMarker: {},
-        selectedPlace: {}
+        selectedPlace: {},
+        role2:'passenger'
     }
 
 }
-
+//update the passenger role on click
+updateP(){
+    var username = localStorage.getItem('username')
+    console.log(username,'hey',localStorage,this.state.role2)
+    const body = {role2: this.state.role2,username:username};
+fetch('http://127.0.0.1:9876/passenger', {
+  method: 'put',
+  body: JSON.stringify(body),
+  headers: {"Content-Type": "application/json"}
+}).then((response) => {
+  return response.text();
+})
+}
     // the function that'll run when you click on the marker
     onMarkerClick(props, marker, e){
         this.setState({
@@ -47,7 +60,7 @@ constructor(props){
                 <NavLink to="/driver">
                     <button type="button" >DRIVER</button>
                 </NavLink>
-                <button type ="button">PASSENGER</button>
+                <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
             </div>
 
             //  the current location is the geolocatoin functionality

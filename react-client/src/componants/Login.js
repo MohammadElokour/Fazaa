@@ -11,16 +11,38 @@ class Login extends React.Component {
 			token:""
 		};
 	}
-onchange(e){
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    }
+	getPlaces(){
+		fetch('http://127.0.0.1:9876/places', {
+		  method: 'get',
+		  headers: {"Content-Type": "application/json"}
+		  // {"x-access-token": token }
+		}).then((response) => {
+		  return response.json();
+		}).then((body) => {
+		  console.log(body);
+		  if(body.error){
+			return this.setState({errorMessage: body.error})
+		  };
+		  return "hi"
+		})
+	  }
+	  usernameChange(e){
+		  this.setState({
+			username:e.target.value
+		  })
+		
+	  }
+	  passChange(e){
+		this.setState({
+			password:e.target.value
+		  })
+	  }
 	
 	login() {
+		console.log(this.state.username,"hi")
 		//Call API to sign in with username and password
 		const body = {username: this.state.username, password: this.state.password};
-		fetch('http://127.0.0.1:9876/login', {
+		fetch('/login', {
 		  method: 'post',
 		  body: JSON.stringify(body),
 		  headers: {"Content-Type": "application/json"}
@@ -36,8 +58,9 @@ onchange(e){
 		  }
 		  //Got token
 		  const token = body.token;
-			localStorage.setItem('token',token);
-			console.log(token);
+		  const username=body.username
+		  localStorage.setItem('token', token);
+		  localStorage.setItem('username', username);
 		  this.setState({username: '', password: '', errorMessage: ''});
 		});
 	  }
@@ -50,11 +73,11 @@ onchange(e){
 					<h1 className="hdr">Login (◕‿◕)♡</h1>
 					<form className="form">
 						<div className="form__group">
-							<input type="text" name="username" placeholder="FullName" className="form__input" value={this.state.usernames} onChange={this.onchange.bind(this)}/>
+							<input type="text" placeholder="FullName" className="form__input" value={this.state.username} onChange = {this.usernameChange.bind(this)}/>
 						</div>
 
 						<div className="form__group">
-							<input type="password" name="password" placeholder="Password" className="form__input" value={this.state.passwords} onChange={this.onchange.bind(this)} />
+							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={this.passChange.bind(this)}/>
 						</div>
 				<NavLink to="/main-map">
 						<button className="btn" type="button" onClick={() => this.login()}>
