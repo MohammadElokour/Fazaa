@@ -13,7 +13,7 @@ const User = db.define('usersdb', {
     phoneNumber:{type:Sequelize.INTEGER},
     carPlateNumber:{type:Sequelize.STRING},
     carType:{type:Sequelize.STRING},
-    carColor:{type:Sequelize.STRING},
+    carColor:{type:Sequelize.STRING}, 
     Role:{type:Sequelize.STRING}
 
 });
