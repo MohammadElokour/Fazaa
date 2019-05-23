@@ -1,58 +1,81 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-var path = require('path');
-const bodyParser = express.json();
-const {User} = require('../database-mysql/models.js')
-const port  = process.env.PORT || 9876
+const bodyParser = require('body-parser')
+// const bodyParser = express.json();
+const {
+  User
+} = require('../database-mysql/models.js')
+const port = process.env.PORT || 9876
 const cors = require("cors");
-const { SECRET_KEY } = require('./secret.js');
+const {
+  SECRET_KEY
+} = require('./secret.js');
 const app = express();
 
- app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 
-app.listen(port , ()=>{
-    console.log(`Welcome to faza'a server port ==> ${port}`)
+app.listen(port, () => {
+  console.log(`Welcome to faza'a server port ==> ${port}`)
 })
 
-
-app.use(bodyParser);
+app.use(express.json())
+app.use(bodyParser.json())
 app.use(cors())
 
 //middleware
-const authenticate = function(req, res, next){
-  const token = req.headers['x-access-token']; //Username encoded in token
-  if(!token){
-      return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+const authenticate = function (req, res, next) {
+  const token = req.headers['token']; //Username encoded in token
+  if (!token) {
+    return res.status(401).send('Please sign in');
   }
-  jwt.verify(token, SECRET_KEY, function(err, decodedToken){
-      //If err, token invalid
-      if(err){
-          return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+  jwt.verify(token, SECRET_KEY, function (err, decodedToken) {
+    //If err, token invalid
+    if (err) {
+      return res.status(401).send('Please sign in');
+    }
+    //Check if user exists in the database
+    const username = decodedToken.username;
+    User.findOne({
+      where: {
+        username: username
       }
-      //Check if user exists in the database
-      const username = decodedToken.username;
-      User.findOne({username: username}).then(function(user){
-          console.log(user);
-          if(!user){
-              return res.status(HTTP_UNAUTHORIZED).send('Please sign up');
-          }
-          req.body.user = user; //Put user in req.body
-          return next();
-      }).catch(function(err){
-          return res.status(HTTP_SERVER_ERROR).send(err);
-      })
+    }).then(function (user) {
+
+
+
+      if (!user) {
+        return res.status(401).send('Please sign up');
+      }
+      req.body.user = user; //Put user in req.body
+      return next();
+    }).catch(function (err) {
+      return res.status(500).send(err);
+    })
   });
 };
-
-
-
-
-
 ////////API
+app.put("/driver", authenticate, (req, res) => {
+  var username = req.body.user.username
+  var phoneNumber = req.body.data.phoneNumber
+  var carPlateNumber = req.body.data.carPlateNumber
+  var carType = req.body.data.carType
+  var carColor = req.body.data.carColor 
+  var Role = req.body.data.Role 
 
-app.post('/signup', function(req, res) {
+
+  User.update({phoneNumber:phoneNumber,
+    carPlateNumber:carPlateNumber,
+     carType:carType,
+      carColor : carColor,
+    Role:Role},
+    {where:{username:username}}).then(() => {
+      console.log("diver info updated")
+    })
+})
+
+app.post('/signup', function (req, res) {
   var username = req.body.username;
   var pass = req.body.password;
   var email = req.body.email
@@ -97,7 +120,9 @@ app.post('/login', function(req, res) {
               return res.status(401).send({error: 'Wrong password'});
           }
       });
-  });
+  }).catch(function (err) {
+    console.log("go sigup ya FoOlL!")
+  })
   
 });
 // app.get('/Login', function (req, res) {
@@ -105,10 +130,10 @@ app.post('/login', function(req, res) {
 // });
 
 
-app.post('/places', authenticate, function(req, res) {
+app.post('/places', authenticate, function (req, res) {
   res.send("yaay")
 });
-app.get('/places', authenticate, function(req, res) {
+app.get('/places', authenticate, function (req, res) {
   res.send("yaaaaaaaaaaaaaay")
 });
 

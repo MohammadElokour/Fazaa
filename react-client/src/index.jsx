@@ -9,10 +9,12 @@ import HomePage from './componants/HomePage';
 import SignUp from './componants/SignUp';
 import Login from './componants/Login';
 import {unregister} from './componants/Interceptor'
-import Map from './componants/map'
 import map from "./componants/map";
 import Driver from "./componants/driver-page"
+<<<<<<< HEAD
 import About from "./componants/about"
+=======
+>>>>>>> 025aa830b729e75cd03bd38474ca248825a70f34
 
 class App extends Component {
  constructor(props){
@@ -37,8 +39,12 @@ class App extends Component {
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={Login} />
               <Route path="/main-map" component={map} />
+<<<<<<< HEAD
               <Route path="/about" component={About}/>
 
+=======
+              <Route path="/driver" component={Driver} />
+>>>>>>> 025aa830b729e75cd03bd38474ca248825a70f34
         </div>
       </BrowserRouter>
      

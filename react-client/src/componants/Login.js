@@ -79,11 +79,11 @@ class Login extends React.Component {
 						<div className="form__group">
 							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={this.passChange.bind(this)}/>
 						</div>
-				<NavLink to="/main-map">
+				{/* <NavLink to="/main-map"> */}
 						<button className="btn" type="button" onClick={() => this.login()}>
 							Login
 						</button>
-				</NavLink>
+				{/* </NavLink> */}
 					</form>
 				</div>
 			</div>
