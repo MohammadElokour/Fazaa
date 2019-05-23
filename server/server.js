@@ -37,11 +37,13 @@ const authenticate = function (req, res, next) {
     }
     //Check if user exists in the database
     const username = decodedToken.username;
-    User.findOne({where:{
-      username: username
-    }}).then(function (user) {
-     
-      
+    User.findOne({
+      where: {
+        username: username
+      }
+    }).then(function (user) {
+
+
 
       if (!user) {
         return res.status(401).send('Please sign up');
@@ -53,22 +55,13 @@ const authenticate = function (req, res, next) {
     })
   });
 };
-
-
-
-
-
-
 ////////API
-app.put("/driver", authenticate ,(req, res) => {
-  
+app.put("/driver", authenticate, (req, res) => {
+
   // console.log(req.body.user.username)
   console.log(req.body.data)
 
 })
-
-
-
 
 app.post('/signup', function (req, res) {
   var username = req.body.username;
@@ -123,7 +116,9 @@ app.post('/login', function (req, res) {
         }, SECRET_KEY, {
           expiresIn: 4000
         });
-        return res.send({token})
+        return res.send({
+          token
+        })
       } else {
         console.log("go to your home biaaaach")
         return res.status(401).send({
@@ -131,7 +126,7 @@ app.post('/login', function (req, res) {
         });
       }
     });
-  }).catch(function(err){
+  }).catch(function (err) {
     console.log("go sigup ya 5ara")
   })
 
