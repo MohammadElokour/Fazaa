@@ -75,7 +75,11 @@ class Driver extends Component{
                 <button className="btn" type="button">Save</button>
                 <label>
                 Do you want passengers to pay (yes/no):
-                <input type="text" placeholder ="Yes/No" value = {this.state.payment} onChange={this.payment.bind(this)}/>
+                <input type="text" placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.payment.bind(this)}/>
+                {/* <select>
+                  <option value="this.state.payment" onChange={this.payment.bind(this)}> Yes </option>
+                  <option value="this.state.payment" onChange={this.payment.bind(this)}> No </option>
+                </select> */}
                 </label>
                 <button type='button' onClick={this.updatePay.bind(this)}>confirm</button>
                 <button type='button' onclick={this.deleteR.bind(this)}>cancel</button>

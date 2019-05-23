@@ -72,9 +72,9 @@ app.post('/signup', function(req, res) {
   });
 });
 
-app.get('/LoginForm.html', function (req, res) {
-  res.sendFile(__dirname + path.resolve('componants/SignUp.js'));
-});
+// app.get('/', function (req, res) {
+//   res.sendFile(__dirname + path.resolve('componants/SignUp.js'));
+// });
 
 
 app.post('/login', function(req, res) {
@@ -122,7 +122,7 @@ User.update({payment:req.body.payment},
   })
 });
 
-app.put("/driver",function(req,res){
+app.put("/driverUpdate",function(req,res){
   User.update({Role:req.body.role},
     {where:{username:req.body.username}}).then(function(){
       console.log("role updated")

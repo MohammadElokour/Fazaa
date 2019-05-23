@@ -17,7 +17,7 @@ class MapOCanaan extends Component {
         var username = localStorage.getItem('username')
         console.log(username,'hey',localStorage,this.state.role1)
         const body = {role: this.state.role1,username:username};
-    fetch('http://127.0.0.1:9876/driver', {
+    fetch('http://127.0.0.1:9876/driverUpdate', {
       method: 'put',
       body: JSON.stringify(body),
       headers: {"Content-Type": "application/json"}
