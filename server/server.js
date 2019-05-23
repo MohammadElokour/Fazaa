@@ -57,10 +57,22 @@ const authenticate = function (req, res, next) {
 };
 ////////API
 app.put("/driver", authenticate, (req, res) => {
+  var username = req.body.user.username
+  var phoneNumber = req.body.data.phoneNumber
+  var carPlateNumber = req.body.data.carPlateNumber
+  var carType = req.body.data.carType
+  var carColor = req.body.data.carColor 
+  var Role = req.body.data.Role 
 
-  // console.log(req.body.user.username)
-  console.log(req.body.data)
 
+  User.update({phoneNumber:phoneNumber,
+    carPlateNumber:carPlateNumber,
+     carType:carType,
+      carColor : carColor,
+    Role:Role},
+    {where:{username:username}}).then(() => {
+      console.log("diver info updated")
+    })
 })
 
 app.post('/signup', function (req, res) {
@@ -114,20 +126,20 @@ app.post('/login', function (req, res) {
         const token = jwt.sign({
           username: user.username
         }, SECRET_KEY, {
-          expiresIn: 4000
+          expiresIn: 6666
         });
         return res.send({
           token
         })
       } else {
-        console.log("go to your home biaaaach")
+        console.log("go to your home, yasser")
         return res.status(401).send({
           error: 'Wrong password'
         });
       }
     });
   }).catch(function (err) {
-    console.log("go sigup ya 5ara")
+    console.log("go sigup ya FoOlL!")
   })
 
 });

@@ -8,7 +8,8 @@ class Driver extends Component{
             phoneNumber:'',
             carPlateNumber:'',
             carType:'',
-            carColor:''
+            carColor:'',
+            Role:'driver'
         }
     }
     //
