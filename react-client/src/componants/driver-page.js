@@ -20,11 +20,15 @@ class Driver extends Component{
 
     onclick(){
         var data =this.state
-        console
+        var token = localStorage.getItem('token') 
+
+        console.log(localStorage.getItem('token'))
         fetch('http://127.0.0.1:9876/driver', {
             method: 'put',
-            body: JSON.stringify(data),
-            headers: {"Content-Type": "application/json"}
+            body: JSON.stringify({data}),
+            headers: {"Content-Type": "application/json",
+        token: token }
+
           })
     }
 

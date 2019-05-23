@@ -20,33 +20,37 @@ app.listen(port, () => {
   console.log(`Welcome to faza'a server port ==> ${port}`)
 })
 
-
+app.use(express.json())
 app.use(bodyParser.json())
 app.use(cors())
 
 //middleware
-const authenticate = function(req, res, next){
-  const token = req.headers['x-access-token']; //Username encoded in token
-  if(!token){
-      return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+const authenticate = function (req, res, next) {
+  const token = req.headers['token']; //Username encoded in token
+  if (!token) {
+    return res.status(401).send('Please sign in');
   }
-  jwt.verify(token, SECRET_KEY, function(err, decodedToken){
-      //If err, token invalid
-      if(err){
-          return res.status(HTTP_UNAUTHORIZED).send('Please sign in');
+  jwt.verify(token, SECRET_KEY, function (err, decodedToken) {
+    //If err, token invalid
+    if (err) {
+      return res.status(401).send('Please sign in');
+    }
+    //Check if user exists in the database
+    const username = decodedToken.username;
+    User.findOne({where:{
+      username: username
+    }}).then(function (user) {
+     
+      
+
+      if (!user) {
+        return res.status(401).send('Please sign up');
       }
-      //Check if user exists in the database
-      const username = decodedToken.username;
-      User.findOne({username: username}).then(function(user){
-          console.log(user);
-          if(!user){
-              return res.status(HTTP_UNAUTHORIZED).send('Please sign up');
-          }
-          req.body.user = user; //Put user in req.body
-          return next();
-      }).catch(function(err){
-          return res.status(HTTP_SERVER_ERROR).send(err);
-      })
+      req.body.user = user; //Put user in req.body
+      return next();
+    }).catch(function (err) {
+      return res.status(500).send(err);
+    })
   });
 };
 
@@ -54,11 +58,14 @@ const authenticate = function(req, res, next){
 
 
 
+
 ////////API
-app.put("/driver", (req, res) => {
-  User.findOne({where:{username:username}})
-    console.log(req.body)
-  })
+app.put("/driver", authenticate ,(req, res) => {
+  
+  // console.log(req.body.user.username)
+  console.log(req.body.data)
+
+})
 
 
 
@@ -72,14 +79,14 @@ app.post('/signup', function (req, res) {
     username: username,
     email: email,
     password: hashedPassword,
-    loc_Lat:null,
-    loc_Lng:null,
-    dest_Lat:null,
-    dest_Lat:null,
+    loc_Lat: null,
+    loc_Lng: null,
+    dest_Lat: null,
+    dest_Lat: null,
     phoneNumber: null,
     carPlateNumber: null,
-    carType:null,
-    carColor:null,
+    carType: null,
+    carColor: null,
     Role: null
   }).then(function () {
     return res.status(201).send("You have created an account Successfully");
@@ -92,34 +99,48 @@ app.post('/signup', function (req, res) {
   });
 });
 
-app.post('/login', function(req, res) {
+app.post('/login', function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
   //Check if user exists in the database
-  User.findOne({where: {username: username}}).then(function(user){
-      if(!user){
-          return res.status(401).send({error: 'Please sign up'}); 
+  console.log(req.body, "  h1")
+
+
+  User.findOne({
+    where: {
+      username: username
+
+    }
+  }).then(function (user) {
+    //Compare with stored password
+    const existingHashedPassword = user.password;
+    bcrypt.compare(password, existingHashedPassword).then(function (isMatching) {
+      console.log(isMatching)
+      if (isMatching) {
+        //Create a token and send to client
+        const token = jwt.sign({
+          username: user.username
+        }, SECRET_KEY, {
+          expiresIn: 4000
+        });
+        return res.send({token})
+      } else {
+        console.log("go to your home biaaaach")
+        return res.status(401).send({
+          error: 'Wrong password'
+        });
       }
-      //Compare with stored password
-      const existingHashedPassword = user.password;
-      bcrypt.compare(password, existingHashedPassword).then(function(isMatching){
-          if(isMatching){
-              //Create a token and send to client
-              const token = jwt.sign({username: user.username}, SECRET_KEY, {expiresIn: 4000});
-              return res.send({token: token});
-          } else {
-              return res.status(401).send({error: 'Wrong password'});
-          }
-      });
-  });
-  
+    });
+  }).catch(function(err){
+    console.log("go sigup ya 5ara")
+  })
+
 });
 
 
-app.post('/places', authenticate, function(req, res) {
+app.post('/places', authenticate, function (req, res) {
   res.send("yaay")
 });
-app.get('/places', authenticate, function(req, res) {
+app.get('/places', authenticate, function (req, res) {
   res.send("yaaaaaaaaaaaaaay")
 });
-
