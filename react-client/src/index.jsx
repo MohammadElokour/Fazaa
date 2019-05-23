@@ -9,8 +9,8 @@ import HomePage from './componants/HomePage';
 import SignUp from './componants/SignUp';
 import Login from './componants/Login';
 import {unregister} from './componants/Interceptor'
-import Map from './componants/map'
 import map from "./componants/map";
+import Driver from "./componants/driver-page"
 
 class App extends Component {
  constructor(props){
@@ -32,7 +32,8 @@ class App extends Component {
               <Route path="/signup" component={SignUp} />
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={Login} />
-              {/* <Route path="/main-map" component={map} /> */}
+              <Route path="/main-map" component={map} />
+              <Route path="/driver" component={Driver} />
         </div>
       </BrowserRouter>
      
