@@ -1,5 +1,6 @@
 import React ,{Component} from "react"
 import { NavLink } from "react-router-dom" 
+import Header from './signoutHeader';
 
 class Driver extends Component{
     constructor(props){
@@ -65,6 +66,7 @@ class Driver extends Component{
     render(){
         return( 
             <div>
+              <Header/>
               <div className="row">
 					<div className="col-md-6">
               <div id="allDbox">
