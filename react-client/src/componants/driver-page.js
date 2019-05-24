@@ -10,8 +10,21 @@ class Driver extends Component{
             carType:'',
             carColor:'',
             value:'No',
-            Role:'driver'
+            Role:'driver',
+            destination:'',
+            passengers:[]
         }
+    }
+
+    componentDidMount() {
+      var username=localStorage.getItem('username');
+      fetch('/passengerss?_username='+username)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          return this.setState({ passengers:data})
+        }
+          );
     }
     //
     onchange(e){
@@ -76,6 +89,7 @@ class Driver extends Component{
                 <input type="text" name="carPlateNumber" value={this.state.carPlateNumbers} placeholder="Car Plate Number" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carType" value={this.state.carTypes} placeholder="Car Type" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carColor" value={this.state.carColors} placeholder="Car Color" className="form__input" onChange={this.onchange.bind(this)} />
+                <input type="text" name="destination" value={this.state.destination} placeholder="destination" className="form__input" onChange={this.onchange.bind(this)} />
                 <label>
                 Do you want passengers to pay:
                 {/* <input type="text" name='payment' placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.onchange.bind(this)}/> */}
@@ -92,6 +106,22 @@ class Driver extends Component{
                 <button type='button' onClick={this.deleteR.bind(this)}>cancel</button>
                 </label>
                 <button onClick={this.onclick.bind(this)} className="btn" type="button">Save</button>
+
+
+                <div className = 'drivers' >
+        <h1 className='listname'>Passengers: </h1>
+        {
+          this.state.passengers.map((pass, i) => {
+            return (
+              <div className="driver" key={i}>
+              <h3>{pass.username}</h3>
+              </div>
+            );
+          })
+        }
+      </div>
+
+
             </div>
         )
     }
