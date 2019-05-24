@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import CurrentLocation from './currentLocation';
@@ -14,22 +13,32 @@ constructor(props){
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
-        role2:'passenger'
+        role2:'passenger',
+        token: this.props.getTokenFromParent()
     }
 
+    // console.log();
+
 }
+
+//Callback for the currentLocation to access the token
+getTokenFromMap() {
+    return this.state.token;
+}
+
+
 //update the passenger role on click
 updateP(){
     var username = localStorage.getItem('username')
     console.log(username,'hey',localStorage,this.state.role2)
     const body = {role2: this.state.role2,username:username};
-fetch('http://127.0.0.1:9876/passenger', {
-  method: 'put',
-  body: JSON.stringify(body),
-  headers: {"Content-Type": "application/json"}
-}).then((response) => {
-  return response.text();
-})
+    fetch('http://127.0.0.1:9876/passenger', {
+            method: 'put',
+            body: JSON.stringify(body),
+            headers: {"Content-Type": "application/json"}
+        }).then((response) => {
+            return response.text();
+    })
 }
     // the function that'll run when you click on the marker
     onMarkerClick(props, marker, e){
@@ -54,20 +63,18 @@ fetch('http://127.0.0.1:9876/passenger', {
             <div>
                 <div>
                 <br />
-                <br />
-                <br />
-                <br />
                 <NavLink to="/driver">
                     <button type="button" >DRIVER</button>
                 </NavLink>
                 <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
             </div>
 
-            //  the current location is the geolocatoin functionality
+            {/* //  the current location is the geolocatoin functionality */}
             <CurrentLocation
-        centerAroundCurrentLocation
-        google={this.props.google}
-                >
+                getTokenFromParentMap={this.getTokenFromMap.bind(this)}
+                centerAroundCurrentLocation
+                google={this.props.google}
+            >
 
         {/* a custom placed marker that shows the device's current location  */}
         <Marker onClick={this.onMarkerClick.bind(this)} name={'current location'} />
