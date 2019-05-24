@@ -39,6 +39,7 @@ class Passenger extends Component{
   render(){
 
     return (
+    
       <div className = 'drivers' >
         <h1 className='listname'>Drivers </h1><h6>(click on the name to see the driver's information)</h6>
         {
@@ -61,23 +62,8 @@ class Passenger extends Component{
           })
         }
       </div>
+     
     );
-  //   return(
-  //     <div>
-  //     <div className = 'drivers' className="driver" onClick={this.handleClick}>
-  //       {
-  //        this.state.Drivers.map(function(item){
-  //          console.log(item)
-  //          return(
-  //           <div>{item.username}</div>
-  //           <div className="opening">{item.phoneNumber}</div>            
-  //          );
-  //        })
-  //      }
-  //     </div>
-  //   </div>
-  //   )
-  // }
 }
 }
 export default Passenger

@@ -67,7 +67,7 @@ app.put("/driver", authenticate, (req, res) => {
   var destination = req.body.data.destination 
 
 
-
+  console.log(username ,phoneNumber ,carPlateNumber ,carType ,carColor ,Role )
   User.update({phoneNumber:phoneNumber,
     carPlateNumber:carPlateNumber,
      carType:carType,

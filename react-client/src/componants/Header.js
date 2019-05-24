@@ -21,6 +21,7 @@ class Header extends Component {
         {/* <a href="/Login">Login</a> */}
         <NavLink to="/login" >Login</NavLink>
         </li>
+        
     </ul>
   </div>
     )

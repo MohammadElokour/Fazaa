@@ -48,28 +48,33 @@ updateP(){
           showingInfoWindow: true
       });
 
-  }       // when you close the marker's infoWindow
-          onClose (props){
-              if(this.state.showingInfoWindow) {
-                  this.setState({
-                      showingInfoWindow: false,
-                      activeMarker:null
-                  })
-              }
-          }
-
-  render() {
-      return (
-          <div>
-              <div>
-              <br />
-              <NavLink to="/driver">
-                  <button type="button" >DRIVER</button>
-              </NavLink>
-              <NavLink to = "/passenger">
-              <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
-              </NavLink>
-          </div>
+    }       // when you close the marker's infoWindow
+            onClose (props){
+                if(this.state.showingInfoWindow) {
+                    this.setState({
+                        showingInfoWindow: false,
+                        activeMarker:null
+                    })
+                }
+            }
+    SignOut(){
+        localStorage.clear();
+    }
+    render() {
+        return (
+            <div>
+                <div id='btnBox'>
+                  
+                    <NavLink to="/driver">
+                    <button className='mapB' type="button" >DRIVER</button>
+                    </NavLink>
+                    <NavLink to="/passenger">
+                    <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
+                    </NavLink>
+                    {/* <NavLink to='/homepage'>
+                    <button id='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
+                    </NavLink> */}
+                </div>
 
           {/* //  the current location is the geolocatoin functionality */}
           <CurrentLocation

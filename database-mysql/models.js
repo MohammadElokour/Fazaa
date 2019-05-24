@@ -1,5 +1,7 @@
-
-const { db, Sequelize } = require('./db.js');
+const {
+    db,
+    Sequelize
+} = require('./db.js');
 //  Database Schema 
 const User = db.define('user', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
