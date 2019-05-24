@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter  , Route, Switch  } from "react-router-dom"
 
 
+
 import Header from './componants/Header';
 import HomePage from './componants/HomePage';
 import SignUp from './componants/SignUp';
@@ -42,12 +43,13 @@ class App extends Component {
   render(){
     return (
       <div>
-      <BrowserRouter>
         <div>
           <Header/>
               <Route exact path="/" component={HomePage} />
               <Route path="/signup" component={SignUp} />
               <Route path="/homepage" component={HomePage} />
+              {/* // <Route path="/login" component={Login} />
+              // <Route path="/main-map" component={map}  /> */}
               {/* <Route path="/login" component={Login} /> */}
               <Route path="/login" render={
                 () => <Login
@@ -63,8 +65,6 @@ class App extends Component {
               <Route path="/about" component={About}/>
               <Route path="/driver" component={Driver} />
         </div>
-      </BrowserRouter>
-     
       </div>
       
 
@@ -86,4 +86,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('app'));

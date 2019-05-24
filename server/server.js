@@ -65,7 +65,7 @@ app.put("/driver", authenticate, (req, res) => {
   var carColor = req.body.data.carColor 
   var Role = req.body.data.Role 
 
-
+  console.log(username ,phoneNumber ,carPlateNumber ,carType ,carColor ,Role )
   User.update({phoneNumber:phoneNumber,
     carPlateNumber:carPlateNumber,
      carType:carType,

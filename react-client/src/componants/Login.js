@@ -1,5 +1,6 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import {Redirect} from "react-router-dom"
+
 
 class Login extends React.Component {
 	constructor(props) {
@@ -9,9 +10,11 @@ class Login extends React.Component {
 			username: '',
 			password: '',
 			errorMessage: '',
-			token:""
+			token:"",
+			authenticated: false
 		};
 	}
+
 	getPlaces(){
 		fetch('http://127.0.0.1:9876/places', {
 		  method: 'get',
@@ -69,30 +72,43 @@ class Login extends React.Component {
 		  this.setState({username: '', password: '', errorMessage: ''});
 		});
 	  }
-	
+		isAuthenticated(){
+			const token =	localStorage.getItem('token')
+			if(token && token.length > 10){
+				return true
+				}else {
+					return false
+				}
+			}
 	render() {
-
+		const auth =this.isAuthenticated();
+	
 		return (
-			<div className="sign">
-				<div className="user">
-					<h1 className="hdr">Login (◕‿◕)♡</h1>
-					<form className="form">
-						<div className="form__group">
-							<input type="text" placeholder="FullName" className="form__input" value={this.state.username} onChange = {this.usernameChange.bind(this)}/>
-						</div>
+			<div>
+				{auth ? <Redirect to={{pathname:'/main-map'}} /> :(
+					<div className="sign">
+					<div className="user">
+						<h1 className="hdr">Login (◕‿◕)♡</h1>
+						<form className="form">
+							<div className="form__group">
+								<input type="text" placeholder="FullName" className="form__input" value={this.state.username} onChange = {this.usernameChange.bind(this)}/>
+							</div>
+					
+							<div className="form__group">
+								<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={this.passChange.bind(this)}/>
+							</div>
+					
+							<button className="btn" type="button" onClick={() => this.login()}>
+								Login
+							</button>
+					
+						</form>
+					</div>
+					</div>
 
-						<div className="form__group">
-							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={this.passChange.bind(this)}/>
-						</div>
-				<NavLink to="/main-map">
-						<button className="btn" type="button" onClick={() => this.login()}>
-							Login
-						</button>
-				</NavLink>
-					</form>
-				</div>
+				)} 
 			</div>
-		);
+		)
 	}
 }
 
