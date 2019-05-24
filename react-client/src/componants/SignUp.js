@@ -8,7 +8,7 @@ class SignUp extends Component {
 			username: '',
 			email: '',
 			password: '',
-			errorMessage: ''
+			
 		};
 	}
 
@@ -20,11 +20,13 @@ class SignUp extends Component {
 	
 	postSignUp() {
 		const body = {username: this.state.username, email: this.state.email, password: this.state.password};
+		localStorage.clear();
     fetch('/signup', {
       method: 'post',
       body: JSON.stringify(body),
       headers: {"Content-Type": "application/json"}
     }).then((response) => {
+			
       return response.text();
     }).then((textReply) => {
       if(textReply === 'This username is already taken'){
@@ -53,7 +55,7 @@ class SignUp extends Component {
 							<input type="password" placeholder="Password" className="form__input" value={this.state.password} onChange={event => this.onChange(event)} name="password" />
 						</div>
 					<NavLink  to="/login">
-						<button className="btn" type="button" onClick={() => this.postSignUp()}>
+						<button className="btn" type="button" onClick={this.postSignUp.bind(this)}>
 							Sign Up
 						</button>
 					</NavLink>

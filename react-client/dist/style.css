@@ -6,13 +6,13 @@ body {
 
 /* Tablet Landscape */
 /* @media screen and (max-width: 1060px) { */
-    /* #primary { width:67%; } */
-    /* #secondary { width:30%; margin-left:3%;}   */
+/* #primary { width:67%; } */
+/* #secondary { width:30%; margin-left:3%;}   */
 /* } */
 /* Tabled Portrait */
 /* @media screen and (max-width: 768px) { */
-    /* #primary { width:100%; } */
-    /* #secondary { width:100%; margin:0; border:none; } */
+/* #primary { width:100%; } */
+/* #secondary { width:100%; margin:0; border:none; } */
 
 #ulnav {
 	list-style-type: none;
@@ -39,42 +39,42 @@ body {
 }
 
 .active {
-	background-color: #414141;
+  background-color: #414141;
 }
 
 #mainImg {
-	width: 100%;
-	height: 30%;
+  width: 100%;
+  height: 30%;
 }
 
 #firstImg {
-	border: 10px solid #6BBAA7;
-	border-radius: 50%;
-	height: 80%;
-	width: 80%;
-	margin-left: 15%;
-	margin-top: 150px;
+  border: 10px solid #6BBAA7;
+  border-radius: 50%;
+  height: 80%;
+  width: 80%;
+  margin-left: 15%;
+  margin-top: 150px;
 }
 
 #firstP {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	font-size: 25px;
-	margin-top: 30%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 25px;
+  margin-top: 30%;
 }
 
 #secImg {
-	border: 10px solid #fedc3d;
-	border-radius: 50%;
-	height: 100%;
-	width: 80%;
-	margin-left: 15%;
+  border: 10px solid #fedc3d;
+  border-radius: 50%;
+  height: 100%;
+  width: 80%;
+  margin-left: 15%;
 }
 
 #secP {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	font-size: 25px;
-	margin-top: 12.5%;
-	margin-left: 30%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 25px;
+  margin-top: 12.5%;
+  margin-left: 30%;
 }
 
 #triImg {
@@ -86,19 +86,19 @@ body {
 }
 
 #triP {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	font-size: 25px;
-	margin-top: 13%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 25px;
+  margin-top: 13%;
 }
 
 /* --------------------------------------SignIn/Login CSS---------------------------------------------------------- */
 .sign {
-	margin: 0px;
-	margin-left: 33%;
-	padding: 123px;
-	box-sizing: border-box;
-	text-align: center;
-	margin-top: 7.5%;
+  margin: 0px;
+  margin-left: 33%;
+  padding: 123px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 7.5%;
 }
 
 .hdr {
@@ -109,113 +109,118 @@ body {
 }
 
 .user {
-	width: 90%;
-	max-width: 340px;
+  width: 90%;
+  max-width: 340px;
 }
 
 .user__header {
-	text-align: center;
-	opacity: 0;
-	transform: translate3d(0, 500px, 0);
-	animation: arrive 500ms ease-in-out 0.7s forwards;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(0, 500px, 0);
+  animation: arrive 500ms ease-in-out 0.7s forwards;
 }
 
 .user__title {
-	font-size: 14px;
-	margin-bottom: -10px;
-	font-weight: 500;
-	color: white;
+  font-size: 14px;
+  margin-bottom: -10px;
+  font-weight: 500;
+  color: white;
 }
 
 .form {
-	margin-top: 40px;
-	border-radius: 6px;
-	overflow: hidden;
-	opacity: 0;
-	transform: translate3d(0, 500px, 0);
-	animation: arrive 500ms ease-in-out 0.9s forwards;
+  margin-top: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(0, 500px, 0);
+  animation: arrive 500ms ease-in-out 0.9s forwards;
 }
 
 .form--no {
-	animation: NO 1s ease-in-out;
-	opacity: 1;
-	transform: translate3d(0, 0, 0);
+  animation: NO 1s ease-in-out;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .form__input {
-	display: block;
-	width: 100%;
-	padding: 20px;
-	font-family: Roboto;
-	-webkit-appearance: none;
-	border: 0;
-	outline: 0;
-	transition: 0.3s;
-	background-color: #D3D3D3
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: Roboto;
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  transition: 0.3s;
+  background-color: #D3D3D3
 }
 
 .btn {
-	display: block;
-	width: 100%;
-	padding: 20px;
-	font-family: Roboto;
-	-webkit-appearance: none;
-	outline: 0;
-	border: 0;
-	color: white;
-	background: #FBA100;
-	transition: 0.3s;
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: Roboto;
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: #FBA100;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #FF8C00
 }
 
 @keyframes NO {
-	from,
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
 
-	10%,
-	30%,
-	50%,
-	70%,
-	90% {
-		-webkit-transform: translate3d(-10px, 0, 0);
-		transform: translate3d(-10px, 0, 0);
-	}
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
-	20%,
-	40%,
-	60%,
-	80% {
-		-webkit-transform: translate3d(10px, 0, 0);
-		transform: translate3d(10px, 0, 0);
-	}
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
 }
 
 @keyframes arrive {
-	0% {
-		opacity: 0;
-		transform: translate3d(0, 50px, 0);
-	}
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
 
-	100% {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
-	}
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes move {
-	0% {
-		background-position: 0 0;
-	}
+  0% {
+    background-position: 0 0;
+  }
 
-	50% {
-		background-position: 100% 0;
-	}
+  50% {
+    background-position: 100% 0;
+  }
 
-	100% {
-		background-position: 0 0;
-	}
+  100% {
+    background-position: 0 0;
+  }
 }
  /* ----------------------------------footer CSS------------------------------- */
 #footer {
@@ -233,27 +238,115 @@ body {
 }
 
 #footerLogo {
-	float: right;
-	margin-top: -3%;
-	width: 150px;
-	margin-right: 1%;
+  float: right;
+  margin-top: -3%;
+  width: 150px;
+  margin-right: 1%;
 }
 
 #contact {
-	color: white;
-    background-color: #FBA100;
-    text-align: center;
-    margin-top: -2%;
-    margin-bottom: 0%;
+  color: white;
+  background-color: #FBA100;
+  text-align: center;
+  margin-top: -2%;
+  margin-bottom: 0%;
 }
 
-/* ---------------------------------passengerCSS---------------------- */
+
+
+#btnBox {
+  padding: 0.3%;
+  padding-left: 3%;
+  background-color: #EBE9E5;
+}
+
+
+
+.mapB {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: inline-block;
+  width: 1000px;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FBA100;
+  border: none;
+  margin-top: 3%;
+  box-shadow: 0 9px #999;
+}
+
+.mapB:hover {background-color: #414141}
+
+.mapB:active {
+  background-color: #FBA100;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+/* -----------------------------------DriverCSS--------------------------------------------------------------- */
+#allDbox {
+  width: 400px;
+  height: 595px;;
+  margin-left: 8%;
+  margin-top: 12%;
+  background-color: #414141;
+}
+
+#Dh2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  line-height: inherit;
+  text-align: center;
+  color: white;
+  height: 60px;
+  width: 350px;
+  margin-bottom: 5%;
+  background-color: #414141;
+}
+
+#lbBox {
+  background-color: #414141;
+  padding-bottom: 3%;
+}
+
+#lb {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #fff;
+}
+
+#lbBtn {
+  color: #fff;
+  margin-top: -8%; 
+  margin-left: 39%;
+  background-color: #414141;
+  border: 1px solid #fff;
+}
+
+#lbBtn:hover {
+  background-color: #fff;
+  border: 1px solid #414141;
+  color: #414141;
+}
+
+#Pd {
+  text-align: center;
+  color: #fff;
+  background-color: #414141;
+}
+
+/* ----------------------------------PassengerCSS--------------------------------------------------------------------------------------- */
 
 #allbox {
 	margin-top: 10%;
-	margin-left: 30%;
-	width: 400px;
-	height: 600px;
+  width: 400px;
+  height: 600px;
+  margin-left: 35%;
+
 }
 
 #Ph2 {
@@ -262,7 +355,7 @@ body {
 	text-align: center;
 	color: white;
 	height: 60px;
-	width: 400px;
+  width: 400px;
 	margin-left: 1%;
 	background-color: #414141;
 	text-shadow: 2px 2px 5px #000;
@@ -270,7 +363,7 @@ body {
 }
 
 #dbox {
-	width: 400px;
+  width: 400px;
 	height: 750px;
 	margin-left: 1%;
 	background-color: #FBA100;
@@ -290,7 +383,7 @@ body {
 
 .dEntry:hover {
 	color: #fff;
-	background-color: #414141	;
+	background-color: #414141;
 }
 
 
