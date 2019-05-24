@@ -63,16 +63,16 @@ updateP(){
     render() {
         return (
             <div>
-                <div>
-                <br />
-                <NavLink to="/driver">
-                    <button type="button" >DRIVER</button>
-                </NavLink>
-                <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
-                <NavLink to='/homepage'>
-                <button className='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
-                </NavLink>
-            </div>
+                <div id='btnBox'>
+                  
+                    <NavLink to="/driver">
+                    <button className='mapB' type="button" >DRIVER</button>
+                    </NavLink>
+                    <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
+                    {/* <NavLink to='/homepage'>
+                    <button id='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
+                    </NavLink> */}
+                </div>
 
             {/* //  the current location is the geolocatoin functionality */}
             <CurrentLocation
