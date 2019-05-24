@@ -57,7 +57,9 @@ updateP(){
                     })
                 }
             }
-
+    SignOut(){
+        localStorage.clear();
+    }
     render() {
         return (
             <div>
@@ -67,6 +69,9 @@ updateP(){
                     <button type="button" >DRIVER</button>
                 </NavLink>
                 <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
+                <NavLink to='/homepage'>
+                <button className='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
+                </NavLink>
             </div>
 
             {/* //  the current location is the geolocatoin functionality */}
