@@ -28,19 +28,16 @@ class App extends Component {
   render(){
     return (
       <div>
-      <BrowserRouter>
         <div>
           <Header/>
               <Route exact path="/" component={HomePage} />
               <Route path="/signup" component={SignUp} />
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={Login} />
-              <Route path="/main-map" component={map} />
+              <Route path="/main-map" component={map}  />
               <Route path="/about" component={About}/>
               <Route path="/driver" component={Driver} />
         </div>
-      </BrowserRouter>
-     
       </div>
       
       // <BrowserRouter history={browserHistory}>
@@ -59,4 +56,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('app'));
