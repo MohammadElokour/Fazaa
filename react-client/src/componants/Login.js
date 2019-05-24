@@ -1,9 +1,11 @@
 import React from "react";
 import {Redirect} from "react-router-dom"
 
+
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			username: '',
 			password: '',
@@ -60,7 +62,11 @@ class Login extends React.Component {
 		  }
 		  //Got token
 		  const token = body.token;
-		  const username=body.username
+			const username=body.username
+			
+			this.props.callBack(token);
+			// Token --> Map --> Header, --> Access reaqct 
+
 		  localStorage.setItem('token', token);
 		  localStorage.setItem('username', username);
 		  this.setState({username: '', password: '', errorMessage: ''});
@@ -69,10 +75,8 @@ class Login extends React.Component {
 		isAuthenticated(){
 			const token =	localStorage.getItem('token')
 			if(token && token.length > 10){
-				console.log("hi")
 				return true
 				}else {
-					console.log("sadad")
 					return false
 				}
 			}

@@ -25,8 +25,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 //middleware
-const authenticate = function (req, res, next) {
+let authenticate = function (req, res, next) {
   const token = req.headers['token']; //Username encoded in token
+  console.log(req.headers);
+  console.log(token);
   if (!token) {
     return res.status(401).send('Please sign in');
   }
@@ -43,12 +45,11 @@ const authenticate = function (req, res, next) {
       }
     }).then(function (user) {
 
-
-
       if (!user) {
         return res.status(401).send('Please sign up');
       }
       req.body.user = user; //Put user in req.body
+      res.locals.user = user;
       return next();
     }).catch(function (err) {
       return res.status(500).send(err);
@@ -101,26 +102,38 @@ app.post('/signup', function (req, res) {
 
 
 app.post('/login', function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
+  var username = req.body.username;
+  var password = req.body.password;
+
   //Check if user exists in the database
   console.log(username);
-  User.findOne({where: {username: username}}).then(function(user){
+  User.findOne({where: {username: username}}).then(function (user) {
       if(!user){
-          return res.status(401).send({error: 'Please sign up'}); 
+          return res.status(404).send({error: 'Please sign up'}); 
       }
       //Compare with stored password
+      console.log('found!');
       const existingHashedPassword = user.password;
+      console.log(req.body.username);
+      console.log(existingHashedPassword);
+      console.log(password);
+
       bcrypt.compare(password, existingHashedPassword).then(function(isMatching){
           if(isMatching){
-              //Create a token and send to client
+              //Create a token and send to client\
+              // console.log('User username: ' + user.username);
+              // console.log('User SECRFET KEY: ' + SECRET_KEY);
+
               const token = jwt.sign({username: user.username}, SECRET_KEY, {expiresIn: 4000});
+              // console.log(token);
               return res.send({token: token,username:req.body.username});
           } else {
+              console.log('h');
               return res.status(401).send({error: 'Wrong password'});
           }
       });
   }).catch(function (err) {
+    res.status(501).send(err);
     console.log("go sigup ya FoOlL!")
   })
   
@@ -160,3 +173,35 @@ User.update({payment:req.body.payment},
         console.log("role deleted")
       })
   });
+
+  //TODO: Get it to work
+  // app.get ('./location', authenticate, (req,res) => {
+  //   const user = req.body.user.username; //Added by authenticate function 
+  //   Place.findAll({where: {username: user}}).then(function(loc){
+  //       return res.send({location: loc});
+  //   }).catch(function(err){
+  //       return res.status(404).send({error: 'Server Error'});
+  //   })
+  // });
+
+  // Authenticate --> Put
+
+  app.put("/main-map" ,authenticate ,(req, res) => {
+    // console.log('Authenticate' + authenticate.token);
+    // console.log(req.body.Loc_Lat);
+    // console.log(req.body.user.username);
+
+    const username = req.body.user.username;
+
+    // console.log("User: " + user);
+    // console.log("Request User: " + req.user);
+    // console.log(req);
+
+    // console.log('h1');
+    // var username = user.username
+    // console.log("GO AWAY")
+    User.update({
+      loc_Lat: req.body.Loc_Lat,
+      loc_Lng: req.body.Loc_Lng
+    },{where : {username : username}}).then(reaa => res.send("Location saved")).catch(err => console.log(err))
+  })
