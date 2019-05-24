@@ -58,7 +58,7 @@ class HomePage extends Component {
 					</div>
 				</div>
 				<div id='footer'>
-				<p id='rights'> &copy; 2019 Project GreenField</p>
+				<p id='rights'> &copy; Copyrights 2019 Project GreenField</p>
 				<p id='contact'>Contact us @ <br /> 07-9578-3727 <br/ > 404_team@gmail.com </p>
 				<img id="footerLogo" src="https://i.ibb.co/QKXPhKw/footer-logos.png" alt="logos" />
 				</div>

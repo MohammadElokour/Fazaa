@@ -1,7 +1,6 @@
 body {
 	margin: 0;
-	background-color: #fff	;
-	
+	background-color: #fff;
 }
 
 
@@ -81,7 +80,7 @@ body {
 #triImg {
 	border: 10px solid #6C648B;
 	border-radius: 50%;
-	height: 115%;
+	height: 125%;
 	width: 80%;
 	margin-left: 15%;
 }
@@ -103,6 +102,7 @@ body {
 }
 
 .hdr {
+	margin-top: -10%;
 	text-align: center;
 	color: #FBA100;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -219,8 +219,7 @@ body {
 }
  /* ----------------------------------footer CSS------------------------------- */
 #footer {
-	margin-top: 4%;
-	border: -10px solid #FBA100 ;	
+	margin-top: 12%;
 	z-index: -1;
 }
 
@@ -229,6 +228,7 @@ body {
 	background-color: #FBA100;
 	margin-top: 0;
 	margin-bottom: 0;
+	margin-left: 0.7%;
 	width: 400px;
 }
 
@@ -251,7 +251,8 @@ body {
 
 #allbox {
 	margin-top: 10%;
-	width: 350px;
+	margin-left: 30%;
+	width: 400px;
 	height: 600px;
 }
 
@@ -261,7 +262,7 @@ body {
 	text-align: center;
 	color: white;
 	height: 60px;
-	width: 350px;
+	width: 400px;
 	margin-left: 1%;
 	background-color: #414141;
 	text-shadow: 2px 2px 5px #000;
@@ -269,7 +270,7 @@ body {
 }
 
 #dbox {
-	width: 350px;
+	width: 400px;
 	height: 750px;
 	margin-left: 1%;
 	background-color: #FBA100;
@@ -279,7 +280,6 @@ body {
 }
 
 .dEntry {
-	display: block;
 	color: black;
 	background-color: #fff;
 	padding: 14px 16px;
