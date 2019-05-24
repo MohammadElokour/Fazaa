@@ -4,7 +4,7 @@ class Passenger extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      Drivers: [],
+      drivers: [],
 		  errorMessage: ''
 		};
 	}
@@ -24,7 +24,7 @@ class Passenger extends Component {
       if(body.error){
         return this.setState({errorMessage: body.error})
       };
-      return this.setState({places: body.places, whatPageToShow: 'places'})
+      return this.setState({drivers: body.drivers})
     })
   }
 
@@ -47,16 +47,16 @@ class Passenger extends Component {
 						<div id="allbox">
 							<h2 id="Ph2">Drivers in Your Area</h2>
 							<div id="dbox">
-								<ul type='circle' id="dlist">
-									<li className="dEntry">Joey</li>
-									<li className="dEntry">Sam</li>
-                  <li className="dEntry">Yousef</li>
-									<li className="dEntry">Alan</li>
-                  <li className="dEntry">Iman</li>
-                  <li className="dEntry">Gary</li>
-                  <li className="dEntry">Victoria</li>
-                  <li className="dEntry">Hailey</li>
-								</ul>
+								<div type='circle' id="dlist">
+									<div className="dEntry">Joey</div>
+									<div className="dEntry">Sam</div>
+                  <div className="dEntry">Yousef</div>
+									<div className="dEntry">Alan</div>
+                  <div className="dEntry">Iman</div>
+                  <div className="dEntry">Gary</div>
+                  <div className="dEntry">Victoria</div>
+                  <div className="dEntry">Hailey</div>
+								</div>
 							</div>
 						</div>
 					</div>

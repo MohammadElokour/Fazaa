@@ -249,7 +249,6 @@ body {
 
 /* ---------------------------------passengerCSS---------------------- */
 
-
 #allbox {
 	margin-top: 10%;
 	width: 350px;
@@ -280,6 +279,7 @@ body {
 }
 
 .dEntry {
+	display: block;
 	color: black;
 	background-color: #fff;
 	padding: 14px 16px;
@@ -290,7 +290,7 @@ body {
 
 .dEntry:hover {
 	color: #fff;
-	background-color: #414141;
+	background-color: #414141	;
 }
 
 
