@@ -11,7 +11,7 @@ const mapStyles = {
 };
 
 // All of this is for the Geolocation functionality
-class CurrentLocation extends React.Component {
+class CurrentLocation extends React.Component{
     constructor(props) {
         super(props);
 
@@ -20,7 +20,12 @@ class CurrentLocation extends React.Component {
             CurrentLocation: {
                 lat: lat,
                 lng: lng
-            }
+            },
+            userClickLocation: {
+                lat: null,
+                lng: null
+            },
+            clickTimes: true
         };
     }
     // checking if the map loaded
@@ -49,6 +54,8 @@ class CurrentLocation extends React.Component {
         }
     }
 
+
+
     // now if the map has already loaded
     componentDidMount() {
         // i've no idea whats centerAroundCurrentLocation
@@ -71,6 +78,11 @@ class CurrentLocation extends React.Component {
         this.loadMap();
     }
 
+    
+    onClick() {
+
+    }
+    
     // the load map function
     loadMap() {
         if (this.props && this.props.google) {
@@ -93,6 +105,7 @@ class CurrentLocation extends React.Component {
 
             // maps.Map() is contructor that instantiates the map
             this.map = new maps.Map(node, mapConfig);
+            
         }
 
               
@@ -110,6 +123,7 @@ class CurrentLocation extends React.Component {
         });
 
         /*
+        Do them later as comments:
             * Fixed Login
             * Fixed Database Update
         
@@ -123,6 +137,45 @@ class CurrentLocation extends React.Component {
 
     }
 
+
+
+
+    /*
+        Handling User Clicks on Map
+    */
+    handleMapClick(obj) {
+        if(this.state.clickTimes){
+            // console.log(obj);
+            // console.log('i have been summoned!');
+            this.setState({
+                userClickLocation: {
+                    lat: obj.lat,
+                    lng: obj.lng
+                }
+            });
+            // console.log('hixxx');
+            this.props.getUserClickLocation(this.state.userClickLocation);
+            this.setState({
+                clickTimes: false
+            })
+            
+            setTimeout(()=> {
+                this.setState({
+                    clickTimes: true
+                })
+            }, 1000);
+        }
+        
+        return;
+    }
+
+    /*
+        Handling Parent Child Communication
+        Returning the new user click location
+    */
+    getUserClickLocation() {
+        return this.state.userClickLocation;
+    }
 
     renderChildren() {
         const {children} = this.props;
@@ -144,8 +197,24 @@ class CurrentLocation extends React.Component {
 
         // console.log(body);
 
+        
+
         return React.Children.map(children, c => {
             if(!c) return;
+            console.log('MAppp');
+            console.log(this.map);
+
+            /*
+                We bound a listener to listen to click events on the map only if it is defined
+                then we store the click position ( LatLng ) in an object "the_click" and we passed that to a function we defined to proeccess the click
+            */
+
+            if (this.map !== undefined)
+            this.map.addListener ('click', (e)=>{
+                const the_click =  { lat: e.latLng.lat(), lng: e.latLng.lng()};
+                this.handleMapClick(the_click);                            
+            })
+            // console.log(this.props.google.Marker);
             return React.cloneElement(c, {
                 map: this.map,
                 google:this.props.google,
@@ -162,7 +231,10 @@ class CurrentLocation extends React.Component {
               <div style={style} ref="map">
                   Loading ୧☉□☉୨
               </div>
+
               {this.renderChildren()}
+
+
           </div>
       );
     }

@@ -328,3 +328,32 @@ User.update({payment:req.body.payment},
       }
     })
   })
+  app.put("/main-mapm", authenticate, (req, res) => {
+    const username = req.body.user.username;
+
+    User.update({
+      dest_Lat: req.body.lat,
+      dest_Lng: req.body.lng
+    },{where : {username : username}}).then(reaa => res.send("Destination saved")).catch(err => console.log(err))
+  });
+
+  app.get("/main-mapm", authenticate, (req, res) => {
+        const user = req.body.user.username; //Added by authenticate function 
+        User.findAll({where: {username: user}}).then(function(userFound){
+            // if(userFound) {
+            //   console.log('USSSER');
+            //   console.log(userFound.id);
+            // }
+            return res.status(200).send({user: userFound}).end();
+        }).catch(function(err){
+            return res.status(404).send({error: err});
+        })
+  });
+
+  app.get('/all-users', (req, res) => {
+    User.findAll().then(function(data){
+      return res.status(200).send({users: data}).end();
+    }).catch(function(err){
+        return res.status(404).send({error: err});
+    });
+  });
