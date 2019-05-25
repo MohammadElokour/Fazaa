@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import CurrentLocation from './currentLocation';
 import {NavLink} from "react-router-dom"
+import Header from './signoutHeader';
 
 /*
 
@@ -181,23 +182,22 @@ updateMarkers(obj) {
                     })
                 }
             }
-    SignOut(){
-        localStorage.clear();
-    }
+   
     render() {
         let items;
         return (
             <div>
-                <div>
-                <br />
-                <NavLink to="/driver">
-                    <button type="button" >DRIVER</button>
-                </NavLink>
-                <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
-                <NavLink to='/homepage'>
-                <button className='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
-                </NavLink>
-            </div>
+                <Header/>
+                <div id='btnBox'>
+                  
+                    <NavLink to="/driver">
+                    <button className='mapB' type="button" >DRIVER</button>
+                    </NavLink>
+                    <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
+                    {/* <NavLink to='/homepage'>
+                    <button id='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
+                    </NavLink> */}
+                </div>
 
             {/* //  the current location is the geolocatoin functionality */}
             <CurrentLocation
