@@ -357,3 +357,21 @@ User.update({payment:req.body.payment},
         return res.status(404).send({error: err});
     });
   });
+
+
+  app.delete('/delete-trip',  (req,res) => {
+    var driver = req.body.driver
+    
+    Trip.update({
+      pass1:null,
+      pass2:null,
+      pass3:null,
+      pass4:null},{
+        where:{driver:driver}
+      }).then(()=>{
+        User.update({
+          numberOfPassengers:0
+        },{where:{username:driver}})
+      })
+    
+  })

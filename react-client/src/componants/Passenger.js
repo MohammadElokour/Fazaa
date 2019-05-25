@@ -1,5 +1,7 @@
 import React ,{Component} from "react"
 import { NavLink } from "react-router-dom" 
+import Header from './signoutHeader';
+
 
 class Passenger extends Component{
   constructor(props){
@@ -39,7 +41,8 @@ class Passenger extends Component{
   render(){
 
     return (
-    
+    <div>
+     <Header/>
       <div className = 'drivers' >
         <h1 className='listname'>Drivers </h1><h6>(click on the name to see the driver's information)</h6>
         {
@@ -62,6 +65,7 @@ class Passenger extends Component{
           })
         }
       </div>
+    </div>
      
     );
 }

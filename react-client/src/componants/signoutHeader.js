@@ -5,8 +5,29 @@ import { NavLink } from "react-router-dom"
 class Header extends Component {
  
     SignOut(){
-        localStorage.clear();
-    }
+        var driver=localStorage.getItem('username'); 
+        console.log(driver);
+        var body1 = {"driver": driver} 
+        fetch('http://127.0.0.1:9876/delete-trip', {
+          method: 'put',
+          body: JSON.stringify(body1),
+          headers: {"Content-Type": "application/json"}
+        })
+
+
+        var username=localStorage.getItem('username');
+        console.log('attempt to delete',username)
+        const body = {username:username}
+        fetch('http://127.0.0.1:9876/deleteRole', {
+        method: 'put',
+        body: JSON.stringify(body),
+        headers: {"Content-Type": "application/json"}
+      }).then((response) => {
+        return response.text();
+      })
+      
+      localStorage.clear();
+  }
  
     render(){
     return(
