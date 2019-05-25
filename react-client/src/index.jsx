@@ -44,26 +44,26 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Header/>
+          
               <Route exact path="/" component={HomePage} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/homepage" component={HomePage} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/homepage" component={HomePage} />
               {/* // <Route path="/login" component={Login} />
               // <Route path="/main-map" component={map}  /> */}
               {/* <Route path="/login" component={Login} /> */}
-              <Route path="/login" render={
+              <Route exact path="/login" render={
                 () => <Login
                     callBack={this.loginCallBack.bind(this)} />
                 
               } />
               {/* <Route path="/main-map" component={map} /> */}
-              <Route path="/main-map" render={
+              <Route exact path="/main-map" render={
                 () => <Map
                     getTokenFromParent={this.getToken.bind(this)} />
                 
               } />
-              <Route path="/about" component={About}/>
-              <Route path="/driver" component={Driver} />
+              <Route exact path="/about" component={About}/>
+              <Route exact path="/driver" component={Driver} />
         </div>
       </div>
       
