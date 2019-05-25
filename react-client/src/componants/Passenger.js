@@ -58,8 +58,8 @@ class Passenger extends Component{
                           <p className='dInfo'>Destination: {driver.destination}</p>
 													<p className='dInfo'>PhoneNumber: {driver.phoneNumber}</p>
 													<p className='dInfo'>Car Type: {driver.carType}</p>
-													<p className='dInfo'>Car PlateNumber: {driver.carPlateNumber}</p>
 													<p className='dInfo'>Car Color: {driver.carColor}</p>
+                          <p className='dInfo'>License Plate: {driver.carPlateNumber}</p>
 													<p className='dInfo'>Collective Payment: {driver.payment}</p>
 													<p className='dInfo'>Occupied Seats: {driver.numberOfPassengers}</p>
 												</div>

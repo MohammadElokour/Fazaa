@@ -251,18 +251,19 @@ body {
 
 
 
-#btnBox {
-  padding: 0.3%;
-  padding-left: 3%;
-  background-color: #EBE9E5;
-}
 
 /* --------------------------------------MapCSS------------------------------------------------------------------------------ */
+#btnBox {
+  padding: 0.5%;
+  padding-top: 0%;
+  padding-left: 30%;
+  background-color: #EBE9E5;
+}
 
 .mapB {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   display: inline-block;
-  width: 1000px;
+  width: 500px;
   padding: 15px 25px;
   font-size: 24px;
   cursor: pointer;
@@ -270,13 +271,13 @@ body {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #FBA100;
+  background-color:#414141;
   border: none;
-  margin-top: 3%;
+  margin-top: 2.85%;
   box-shadow: 0 9px #999;
 }
 
-.mapB:hover {background-color: #414141}
+.mapB:hover {background-color: #FBA100}
 
 .mapB:active {
   background-color: #FBA100;
@@ -287,9 +288,10 @@ body {
 
 /* -----------------------------------DriverCSS--------------------------------------------------------------- */
 #allDbox {
-  width: 400px;
-  height: 595px;;
-  margin-left: 8%;
+  margin-top: 10%;
+  width: 440px;
+  height: 1070px;
+  margin-left: 35%;
   margin-top: 12%;
   background-color: #414141;
 }
@@ -341,9 +343,8 @@ body {
 #allbox {
 	margin-top: 10%;
   width: 440px;
-  height: 600px;
+  height: 1070px;
   margin-left: 35%;
-
 }
 
 #Ph2 {
@@ -361,7 +362,7 @@ body {
 
 #dbox {
   width: 440px;
-	height: 750px;
+	height: 1002px;
 	margin-left: 1%;
 	background-color: #FBA100;
 	border: 1px solid #6C648B;
