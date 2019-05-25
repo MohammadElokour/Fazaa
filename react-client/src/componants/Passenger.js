@@ -55,13 +55,13 @@ class Passenger extends Component{
 													Pick me up
 												</button>
 												<div className="opening">
-                          <p className='dInfo'>Destination:{driver.destination}</p>
-													<p className='dInfo'>PhoneNumber:{driver.phoneNumber}</p>
-													<p className='dInfo'>CarType:{driver.carType}</p>
-													<p className='dInfo'>CarPlateNumber:{driver.carPlateNumber}</p>
-													<p className='dInfo'>CarColor :{driver.carColor}</p>
-													<p className='dInfo'>CollectivePayment:{driver.payment}</p>
-													<p className='dInfo'>OccupiedSeats:{driver.numberOfPassengers}</p>
+                          <p className='dInfo'>Destination: {driver.destination}</p>
+													<p className='dInfo'>PhoneNumber: {driver.phoneNumber}</p>
+													<p className='dInfo'>Car Type: {driver.carType}</p>
+													<p className='dInfo'>Car PlateNumber: {driver.carPlateNumber}</p>
+													<p className='dInfo'>Car Color: {driver.carColor}</p>
+													<p className='dInfo'>Collective Payment: {driver.payment}</p>
+													<p className='dInfo'>Occupied Seats: {driver.numberOfPassengers}</p>
 												</div>
 											</div>
 										);
