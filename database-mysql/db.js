@@ -1,9 +1,13 @@
 const Sequelize = require("sequelize");
 
-//
-const db = new Sequelize('userdb', 'root', 'rbk6', {
-  host: 'localhost',
-  dialect:'mysql'
+<<<<<<< HEAD
+// connected to freesqldatabase.com
+=======
+// https://remotemysql.com/stats.php  Ask Canaan for the logIn info
+>>>>>>> 94e418bbf5b37865e800dce8e8a672f45ada74c9
+const db = new Sequelize('sql12293151', 'sql12293151', 'K9RaFkAPbr', {
+  host: 'sql12.freesqldatabase.com',
+  dialect:'mysql',
 });
 
 
