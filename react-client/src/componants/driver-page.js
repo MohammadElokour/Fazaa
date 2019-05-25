@@ -10,9 +10,23 @@ class Driver extends Component{
             carPlateNumber:'',
             carType:'',
             carColor:'',
-            payment:'No',
-            Role:'driver'
+            value:'No',
+            Role:'driver',
+            destination:'',
+            passengers:[]
         }
+    }
+
+    componentDidMount() {
+      console.log(localStorage.getItem('username'),'baiudcsoafjsngoasngjsiohjsr[ihjiortsj')
+      var username=localStorage.getItem('username');
+      fetch('/passengerss?_username='+username)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          return this.setState({ passengers:data})
+        }
+          );
     }
     //
     onchange(e){
@@ -24,8 +38,8 @@ class Driver extends Component{
     updatePay(){
       
       var username=localStorage.getItem('username');
-      console.log(this.state.payment,username)
-      const body = {payment: this.state.payment,username:username}
+      console.log(this.state.value,username)
+      const body = {payment: this.state.value,username:username}
       fetch('http://127.0.0.1:9876/payment', {
       method: 'put',
       body: JSON.stringify(body),
@@ -62,6 +76,10 @@ class Driver extends Component{
       return response.text();
     })
     }
+
+    handleChange(e) {
+      this.setState({ value: e.target.value });
+    }
     
     render(){
         return( 
@@ -75,21 +93,43 @@ class Driver extends Component{
                 <input type="text" name="carPlateNumber" value={this.state.carPlateNumbers} placeholder="Car Plate Number" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carType" value={this.state.carTypes} placeholder="Car Type" className="form__input" onChange={this.onchange.bind(this)} />
                 <input type="text" name="carColor" value={this.state.carColors} placeholder="Car Color" className="form__input" onChange={this.onchange.bind(this)} />
+                <input type="text" name="destination" value={this.state.destination} placeholder="destination" className="form__input" onChange={this.onchange.bind(this)} />
                 <div id="lbBox">
                 <label id="lb">
-                Do you want passengers to pay (yes/no):
-                <input type="text" name='payment' placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.onchange.bind(this)}/><br/>
-                {/* <select>
-                  <option value="this.state.payment" onChange={this.payment.bind(this)}> Yes </option>
-                  <option value="this.state.payment" onChange={this.payment.bind(this)}> No </option>
-                </select> */}
+                <label>
+                Do you want passengers to pay:
+                {/* <input type="text" name='payment' placeholder ="Yes/No" maxLength="3" value = {this.state.payment} onChange={this.onchange.bind(this)}/> */}
+                <select onChange={this.handleChange.bind(this)}>
+                  <option value='No'> No </option>
+                  <option value='Yes' > Yes </option>
+                  
+                </select>
+                </label>
                 </label>
                 <button type='button' onClick={this.updatePay.bind(this)} id='lbBtn'>confirm</button><br/>
+                <label>
+                  Do u wanna finish your the trip:
+                <button type='button' onClick={this.deleteR.bind(this)}>cancel</button>
+                </label>
                 </div>
                 <button onClick={this.onclick.bind(this)} className="btn" type="button">Open Registration</button>
                 <p id='Pd'>When ever you're done ^^</p>
                 <button onClick={this.deleteR.bind(this)} className="btn" type='button'>End Registration</button>
                 </div>
+               
+                <div className = 'drivers' >
+                <h1 className='listname'>Passengers: </h1>
+                {
+                  this.state.passengers.map((pass, i) => {
+                    return (
+                      <div className="driver" key={i}>
+                      <h3>{pass.username}</h3>
+                      </div>
+                    );
+                  })
+                }
+              </div>
+           
 					</div>
 					<div className="col-md-6">
             {/* Map goes here */}

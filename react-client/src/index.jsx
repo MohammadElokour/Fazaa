@@ -13,6 +13,7 @@ import {unregister} from './componants/Interceptor'
 import Map from "./componants/map";
 import Driver from "./componants/driver-page"
 import About from "./componants/about"
+import Passenger from "./componants/Passenger"
 
 class App extends Component {
  
@@ -62,8 +63,10 @@ class App extends Component {
                     getTokenFromParent={this.getToken.bind(this)} />
                 
               } />
-              <Route exact path="/about" component={About}/>
-              <Route exact path="/driver" component={Driver} />
+              <Route path="/about" component={About}/>
+              <Route path="/driver" component={Driver} />
+              <Route path="/passenger" component={Passenger} />
+
         </div>
       </div>
       
