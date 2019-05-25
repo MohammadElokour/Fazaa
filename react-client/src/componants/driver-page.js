@@ -11,22 +11,25 @@ class Driver extends Component{
             carType:'',
             carColor:'',
             value:'No',
-            Role:'driver',
             destination:'',
             passengers:[]
         }
     }
 
+///refresh the page each 1s
     componentDidMount() {
-      console.log(localStorage.getItem('username'),'baiudcsoafjsngoasngjsiohjsr[ihjiortsj')
       var username=localStorage.getItem('username');
-      fetch('/passengerss?_username='+username)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          return this.setState({ passengers:data})
-        }
-          );
+      setInterval (()=>{
+        fetch('/passengerss?_username='+username)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+             this.setState({ passengers:data})
+            //  console.log("hi")
+            
+          }
+            );
+      },1000)
     }
     //
     onchange(e){
