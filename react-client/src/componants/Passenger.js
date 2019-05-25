@@ -12,13 +12,16 @@ class Passenger extends Component{
   }
 
   componentDidMount() {
+    setInterval(()=>{
       fetch('/driverss')
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-          return this.setState({ Drivers:data.data})
+          // console.log("data")
+           this.setState({ Drivers:data.data})
         }
           );
+
+    },1000)
     }
     
     handleClick(event){
@@ -35,6 +38,7 @@ class Passenger extends Component{
         body: JSON.stringify(body),
         headers: {"Content-Type": "application/json"}
       }).then((response) => {
+        this.componentDidMount()
         return response.text();
       })
     }
