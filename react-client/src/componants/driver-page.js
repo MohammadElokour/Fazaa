@@ -20,7 +20,7 @@ class Driver extends Component {
 	}
 
 	componentDidMount() {
-		console.log(localStorage.getItem('username'), 'baiudcsoafjsngoasngjsiohjsr[ihjiortsj');
+		console.log(localStorage.getItem('username'));
 		var username = localStorage.getItem('username');
 		fetch('/passengerss?_username=' + username).then((response) => response.json()).then((data) => {
 			console.log(data);
@@ -161,11 +161,11 @@ class Driver extends Component {
 							</button>
 						</div>
 					</div>
-					<div className="col-md-6">
-		     {/* --------MAP HERE---------*/}
+					<div className="col-md-6">{/* Map goes here */}</div>
 				</div>
 			</div>
 		);
 	}
 }
+
 export default Driver;

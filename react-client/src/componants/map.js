@@ -4,6 +4,7 @@ import CurrentLocation from './currentLocation';
 import { NavLink } from 'react-router-dom';
 import Header from './signoutHeader';
 
+
 /*
 
      User now can see other users markers

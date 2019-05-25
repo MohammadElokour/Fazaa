@@ -63,7 +63,6 @@ app.put("/driver", authenticate, (req, res) => {
   var carPlateNumber = req.body.data.carPlateNumber
   var carType = req.body.data.carType
   var carColor = req.body.data.carColor 
-  var Role = req.body.data.Role 
   var destination = req.body.data.destination 
 
 
@@ -72,7 +71,7 @@ app.put("/driver", authenticate, (req, res) => {
     carPlateNumber:carPlateNumber,
      carType:carType,
       carColor : carColor,
-    Role:Role,
+    Role:"driver",
     destination:destination},
     {where:{username:username}}).then(() => {
       console.log("diver info updated")
@@ -175,6 +174,7 @@ User.update({payment:req.body.payment},
   // });
 
   // Authenticate --> Put
+
 
   app.put("/main-map" ,authenticate ,(req, res) => {
     // console.log('Authenticate' + authenticate.token);
@@ -326,6 +326,8 @@ User.update({payment:req.body.payment},
       }else{
         return res.send(passengers)
       }
+    }).catch(function(err){
+      res.send(err)
     })
   })
   app.put("/main-mapm", authenticate, (req, res) => {
@@ -357,3 +359,20 @@ User.update({payment:req.body.payment},
         return res.status(404).send({error: err});
     });
   });
+
+
+  app.delete('/delete-trip',  (req,res) => {
+    var driver = req.body.driver
+    
+    Trip.update({
+      pass1:null,
+      pass2:null,
+      pass3:null,
+      pass4:null},{
+        where:{driver:driver}
+      }).then(()=>{
+        User.update({
+          numberOfPassengers:0
+        },{where:{username:driver}})
+      })
+  })
