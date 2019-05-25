@@ -236,7 +236,7 @@ body {
 
 #footerLogo {
   float: right;
-  margin-top: -3%;
+  margin-top: -2%;
   width: 150px;
   margin-right: 1%;
 }
@@ -287,10 +287,11 @@ body {
 
 
 /* -----------------------------------DriverCSS--------------------------------------------------------------- */
+
 #allDbox {
   margin-top: 10%;
   width: 440px;
-  height: 1070px;
+  height: 830px;
   margin-left: 35%;
   margin-top: 12%;
   background-color: #414141;
@@ -309,7 +310,6 @@ body {
 
 #lbBox {
   background-color: #414141;
-  padding-bottom: 3%;
 }
 
 #lb {
@@ -318,10 +318,22 @@ body {
   color: #fff;
 }
 
+#lbtxt {
+  margin-top: 11px;
+  margin-left: 20px;
+  margin-bottom: 3px;
+}
+
+#select {
+  margin-left: 7px;
+  padding: 2px;
+}
+
 #lbBtn {
   color: #fff;
-  margin-top: -8%; 
-  margin-left: 39%;
+  float: right;
+  margin-top: 9px;
+  margin-right: 8%;
   background-color: #414141;
   border: 1px solid #fff;
 }
@@ -335,14 +347,31 @@ body {
 #Pd {
   text-align: center;
   color: #fff;
+  margin-top: 143px;
   background-color: #414141;
 }
+
+
+.listname {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: inline-block;
+  color: #fff;
+  margin-left: 17px;
+}
+  
+
+.pEntry {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #fff;
+}
+
+
 
 /* ----------------------------------PassengerCSS--------------------------------------------------------------------------------------- */
 
 #allbox {
 	margin-top: 10%;
-  width: 440px;
+  width: 500px;
   height: 1070px;
   margin-left: 35%;
 }
@@ -352,22 +381,20 @@ body {
 	line-height: inherit;
 	text-align: center;
 	color: white;
-	height: 60px;
-  width: 440px;
+  height: 70px;
+  width: 500px;
 	margin-left: 1%;
 	background-color: #414141;
-	text-shadow: 2px 2px 5px #000;
-	box-shadow: 3px 4px 5px #000;
+  text-shadow: 2px 2px 5px #000;
+  margin-bottom: 0%;
 }
 
 #dbox {
-  width: 440px;
+  width: 500px;
 	height: 1002px;
 	margin-left: 1%;
 	background-color: #FBA100;
 	border: 1px solid #6C648B;
-	box-shadow: 2px 2px 5px #000;
-
 }
 
 
@@ -381,6 +408,7 @@ body {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	padding: 10px;
   margin-left: 3%;
+  margin-right: 4%;
 }
 
 #dlist:hover {
@@ -390,10 +418,12 @@ body {
 }
 
 .dnames {
-  background-color: #fff;
-  color: #000;
-  font-size: 20px;
-  box-shadow: 3px 4px 5px #000;
+  text-indent: 10px;
+  background-color: #FBA100;
+  color: #fff;
+  font-size: 23px;
+  text-shadow: 2px 2px 5px #000;
+  border: 1.5px solid #6C648B;
   width: 265px;
 }
 
@@ -420,12 +450,7 @@ body {
 }
 
 
-.listname{
-  display: inline-block;
-}
-  
-
-.drivers{
+.drivers {
 	margin-top:7%;
 }
 

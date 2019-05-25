@@ -61,7 +61,7 @@ class Passenger extends Component{
 													<p className='dInfo'>Car Color: {driver.carColor}</p>
                           <p className='dInfo'>License Plate: {driver.carPlateNumber}</p>
 													<p className='dInfo'>Collective Payment: {driver.payment}</p>
-													<p className='dInfo'>Occupied Seats: {driver.numberOfPassengers}</p>
+													<p className='dInfo'>Occupied Seats [Max=4]: {driver.numberOfPassengers}</p>
 												</div>
 											</div>
 										);

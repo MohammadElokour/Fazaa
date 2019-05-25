@@ -48,7 +48,7 @@ class SignUp extends Component {
 					<h1 className="hdr">Sign Up ^‿^</h1>
 					<form className="form">
 						<div className="form__group">
-							<input type="text" placeholder="Username" className="form__input" value={this.state.username} onChange={event => this.onChange(event)} name="username" />
+							<input type="text" placeholder="FullName" className="form__input" value={this.state.username} onChange={event => this.onChange(event)} name="username" />
 						</div>
 
 						<div className="form__group">
