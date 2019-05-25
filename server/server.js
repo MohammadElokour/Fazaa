@@ -63,7 +63,6 @@ app.put("/driver", authenticate, (req, res) => {
   var carPlateNumber = req.body.data.carPlateNumber
   var carType = req.body.data.carType
   var carColor = req.body.data.carColor 
-  var Role = req.body.data.Role 
   var destination = req.body.data.destination 
 
 
@@ -72,7 +71,7 @@ app.put("/driver", authenticate, (req, res) => {
     carPlateNumber:carPlateNumber,
      carType:carType,
       carColor : carColor,
-    Role:Role,
+    Role:"driver",
     destination:destination},
     {where:{username:username}}).then(() => {
       console.log("diver info updated")
