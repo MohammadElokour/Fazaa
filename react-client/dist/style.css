@@ -340,7 +340,7 @@ body {
 
 #allbox {
 	margin-top: 10%;
-  width: 400px;
+  width: 440px;
   height: 600px;
   margin-left: 35%;
 
@@ -352,7 +352,7 @@ body {
 	text-align: center;
 	color: white;
 	height: 60px;
-  width: 400px;
+  width: 440px;
 	margin-left: 1%;
 	background-color: #414141;
 	text-shadow: 2px 2px 5px #000;
@@ -360,7 +360,7 @@ body {
 }
 
 #dbox {
-  width: 400px;
+  width: 440px;
 	height: 750px;
 	margin-left: 1%;
 	background-color: #FBA100;
@@ -369,44 +369,73 @@ body {
 
 }
 
-.dEntry {
-	color: black;
-	background-color: #fff;
-	padding: 14px 16px;
-	border: 1px solid #6C648B;
-	box-shadow: 2px 2px 5px #000;
-	margin: 0 0 5px 0;
-}
-
-.dEntry:hover {
-	color: #fff;
-	background-color: #414141;
-}
-
 
 #dlist {
+  color: black;
+	background-color: #fff;
+	border: 1px solid #6C648B;
+	box-shadow: 2px 2px 5px #000;
+	margin: 7px 7px 5px 0;
 	font-size: 20px;
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	padding: 10px;
-	margin-left: 8%;
+  margin-left: 3%;
+}
+
+#dlist:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #414141;
+}
+
+.dnames {
+  background-color: #fff;
+  color: #000;
+  font-size: 20px;
+  box-shadow: 3px 4px 5px #000;
+  width: 265px;
+}
+
+.dInfo {
+  font-size: 18px;
+  margin: 5px;
+  width: 375px;
+}
+
+#pickbtn {
+  font-size: 17px;
+  color: #fff;
+  float: right;
+  margin-top: -7%;
+  background-color: #414141;
+  border: 1px solid #fff;
+}
+
+#pickbtn:hover {
+  cursor: grabbing;
+  background-color: #fff;
+  border: 1px solid #414141;
+  color: #414141;
 }
 
 
 .listname{
   display: inline-block;
-  }
+}
   
-  
+
 .drivers{
 	margin-top:7%;
 }
 
-	.driver .opening {
-		display: none;
-	  }
+.driver .opening {
+    display: none;
+    width: 100%;
+    margin-top: 9%;
+}
 	  
-	  .active .opening {
+.active .opening {
 		display: block;
-		width: 100px;
-    }
+    width: 100px;
+}
     

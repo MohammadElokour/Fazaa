@@ -12,7 +12,7 @@ import Login from './componants/Login';
 import {unregister} from './componants/Interceptor'
 import Map from "./componants/map";
 import Driver from "./componants/driver-page"
-import Passenger from "./componants/passenger-page"
+// import Passenger from "./componants/passenger-page"
 import About from "./componants/about"
 import Passenger from "./componants/Passenger"
 

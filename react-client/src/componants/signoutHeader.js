@@ -11,13 +11,13 @@ class Header extends Component {
     render(){
     return(
     <div>
-      <ul>
-          <li>
+      <ul id='ulnav'>
+          <li className='linav'>
             {/* <link to='/'>Home</link> */}
            {/* <a className="active" href="/">Home</a> */}
            <NavLink to="/" >Home</NavLink>
           </li>
-          <li>
+          <li className='linav'>
             {/* <link to='/SignUp'>SignUp</link> */}
             {/* <a href="/SignUp">SignUp</a> */}
             <NavLink to="/homepage" onClick={this.SignOut.bind(this)} >Sign Out</NavLink>
