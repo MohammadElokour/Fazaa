@@ -175,6 +175,7 @@ User.update({payment:req.body.payment},
 
   // Authenticate --> Put
 
+
   app.put("/main-map" ,authenticate ,(req, res) => {
     // console.log('Authenticate' + authenticate.token);
     // console.log(req.body.Loc_Lat);
@@ -325,6 +326,8 @@ User.update({payment:req.body.payment},
       }else{
         return res.send(passengers)
       }
+    }).catch(function(err){
+      res.send(err)
     })
   })
   app.put("/main-mapm", authenticate, (req, res) => {
@@ -356,3 +359,20 @@ User.update({payment:req.body.payment},
         return res.status(404).send({error: err});
     });
   });
+
+
+  app.delete('/delete-trip',  (req,res) => {
+    var driver = req.body.driver
+    
+    Trip.update({
+      pass1:null,
+      pass2:null,
+      pass3:null,
+      pass4:null},{
+        where:{driver:driver}
+      }).then(()=>{
+        User.update({
+          numberOfPassengers:0
+        },{where:{username:driver}})
+      })
+  })

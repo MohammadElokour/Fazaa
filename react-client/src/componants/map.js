@@ -4,6 +4,7 @@ import CurrentLocation from './currentLocation';
 import {NavLink} from "react-router-dom"
 import Header from './signoutHeader';
 
+
 /*
 
      User now can see other users markers
@@ -114,7 +115,7 @@ constructor(props){
 
 //Callback for the currentLocation to access the token
 getTokenFromMap() {
-  return this.state.token;
+    return this.state.token;
 }
 
 
@@ -182,7 +183,6 @@ updateMarkers(obj) {
                     })
                 }
             }
-   
     render() {
         let items;
         return (
@@ -196,18 +196,15 @@ updateMarkers(obj) {
                     <NavLink to="/passenger">
                     <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
                     </NavLink>
-                    {/* <NavLink to='/homepage'>
-                    <button id='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
-                    </NavLink> */}
+                    
                 </div>
-
             {/* //  the current location is the geolocatoin functionality */}
             <CurrentLocation
                 getUserClickLocation={this.updateMarkers.bind(this)}
                 getTokenFromParentMap={this.getTokenFromMap.bind(this)}
                 centerAroundCurrentLocation
                 google={this.props.google}
-            />
+            >
 {/* 
             {
                 console.log(CurrentLocation)
@@ -235,7 +232,7 @@ updateMarkers(obj) {
 
          <Marker
                 onClick={this.onMarkerClick.bind(this)} 
-                name={"Irbid"}
+                name={"Petra"}
                 position ={{
                      lat: 30.3285 ,
                      lng : 35.4444
@@ -281,17 +278,19 @@ updateMarkers(obj) {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
-        />
+        >
           <div>
           {/* this's what appears in the InfoWindo dialoge box */}
             <h1>{this.state.selectedPlace.name}</h1>
           </div>
-        </div>
-  );
+        </InfoWindow>
+      </CurrentLocation>
+            </div>
+    );
+  }
 }
-}
-      
+        
 
 export default GoogleApiWrapper({
-  apiKey : "AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po"
+    apiKey : "AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po"
 })(MapContainer)
