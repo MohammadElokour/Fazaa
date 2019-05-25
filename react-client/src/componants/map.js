@@ -5,10 +5,6 @@ import {NavLink} from "react-router-dom"
 import Header from './signoutHeader';
 
 /*
-<<<<<<< HEAD
-    was about to put this essay into comments, but no one deserves and i'm dead tired.
-=======
->>>>>>> 94e418bbf5b37865e800dce8e8a672f45ada74c9
 
      User now can see other users markers
      now the markers get updated on the db
@@ -118,7 +114,7 @@ constructor(props){
 
 //Callback for the currentLocation to access the token
 getTokenFromMap() {
-    return this.state.token;
+  return this.state.token;
 }
 
 
@@ -197,11 +193,9 @@ updateMarkers(obj) {
                     <NavLink to="/driver">
                     <button className='mapB' type="button" >DRIVER</button>
                     </NavLink>
-
                     <NavLink to="/passenger">
                     <button className='mapB' type ="button" onClick={this.updateP.bind(this)}>PASSENGER</button>
                     </NavLink>
-
                     {/* <NavLink to='/homepage'>
                     <button id='signout' onClick={this.SignOut.bind(this)} type ="button" >Sign Out</button>
                     </NavLink> */}
@@ -213,7 +207,7 @@ updateMarkers(obj) {
                 getTokenFromParentMap={this.getTokenFromMap.bind(this)}
                 centerAroundCurrentLocation
                 google={this.props.google}
-            >
+            />
 {/* 
             {
                 console.log(CurrentLocation)
@@ -287,19 +281,17 @@ updateMarkers(obj) {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
-        >
+        />
           <div>
           {/* this's what appears in the InfoWindo dialoge box */}
             <h1>{this.state.selectedPlace.name}</h1>
           </div>
-        </InfoWindow>
-      </CurrentLocation>
-            </div>
-    );
-  }
+        </div>
+  );
 }
-        
+}
+      
 
 export default GoogleApiWrapper({
-    apiKey : "AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po"
+  apiKey : "AIzaSyCSd2zDkggemBpMYEeEvEo_E4RlQDxd6Po"
 })(MapContainer)

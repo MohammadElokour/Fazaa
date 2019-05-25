@@ -3,10 +3,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 // const bodyParser = express.json();
-const { User } = require('../database-mysql/models.js');
-const port = process.env.PORT || 9876;
-const cors = require('cors');
-const { SECRET_KEY } = require('./secret.js');
+const {
+  User,Trip
+} = require('../database-mysql/models.js')
+const port = process.env.PORT || 9876
+const cors = require("cors");
+const {
+  SECRET_KEY
+} = require('./secret.js');
 const app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
@@ -60,13 +64,16 @@ app.put("/driver", authenticate, (req, res) => {
   var carType = req.body.data.carType
   var carColor = req.body.data.carColor 
   var Role = req.body.data.Role 
+  var destination = req.body.data.destination 
+
 
   console.log(username ,phoneNumber ,carPlateNumber ,carType ,carColor ,Role )
   User.update({phoneNumber:phoneNumber,
     carPlateNumber:carPlateNumber,
      carType:carType,
       carColor : carColor,
-    Role:Role},
+    Role:Role,
+    destination:destination},
     {where:{username:username}}).then(() => {
       console.log("diver info updated")
     })
@@ -80,7 +87,8 @@ app.post('/signup', function (req, res) {
   User.create({
     username: username,
     email:email,
-    password: hashedPassword
+    password: hashedPassword,
+    numberOfPassengers:0
     }).then(function(){
       return res.status(201).send("You have created an account Successfully");
 
@@ -91,11 +99,6 @@ app.post('/signup', function (req, res) {
       return res.status(500).send(err);
   });
 });
-
-// app.get('/', function (req, res) {
-//   res.sendFile(__dirname + path.resolve('componants/SignUp.js'));
-// });
-
 
 app.post('/login', function(req, res) {
   var username = req.body.username;
@@ -134,36 +137,12 @@ app.post('/login', function(req, res) {
   })
   
 });
-// app.get('/Login', function (req, res) {
-//   res.sendFile(__dirname + '/../componants/Login.js');
-// });
-
-app.post('/places', authenticate, function(req, res) {
-	res.send('yaay');
-});
-app.get('/places', authenticate, function(req, res) {
-	res.send('yaaaaaaaaaaaaaay');
-});
-
-app.get('/driverlist', function(req, res) {
-	User.findAll({ where: { Role: driver } })
-		.then(function(drivers) {
-      console.log(drivers)
-			return res.json({ drivers: drivers });
-		})
-		.catch(function(err) {
-			return res.status(500).send(err);
-		});
-});
-app.get('/places', authenticate, function (req, res) {
-  res.send("yaaaaaaaaaaaaaay")
-});
-
 
 app.put("/payment",function(req,res){
 User.update({payment:req.body.payment},
   {where:{username:req.body.username}}).then(function(){
     console.log("payment updated")
+    res.send('done')
   }).catch(function(err){
     return res.send(err)
   })
@@ -173,6 +152,7 @@ User.update({payment:req.body.payment},
     User.update({Role:req.body.role2},
       {where:{username:req.body.username}}).then(function(){
         console.log("role updated")
+        res.send('done')
       })
     });
 
@@ -180,6 +160,7 @@ User.update({payment:req.body.payment},
     User.update({Role:null},
       {where:{username:req.body.username}}).then(function(){
         console.log("role deleted")
+        res.send('done')
       })
   });
 
@@ -214,9 +195,139 @@ User.update({payment:req.body.payment},
       loc_Lng: req.body.Loc_Lng
     },{where : {username : username}}).then(reaa => res.send("Location saved")).catch(err => console.log(err))
   })
-<<<<<<< HEAD
-=======
 
+  app.get('/driverss',(req,res) => {
+    User.findAll({where:{Role:'driver'}}).then(function(data){
+      console.log(data)
+      return res.send({data:data})
+    }).catch(function(err){
+      console.log(err)
+      return res.send(err)
+    })
+  })
+
+  app.post('/pickup',(req,res) => {
+    console.log('hellllllooooooooooooooooooooooooooo',req.body)
+    User.findOne({where:{username:req.body.driverName}}).then(function(data){
+      console.log('heeeeeeeeeeeeey',data.numberOfPassengers)
+      if(data.numberOfPassengers === 0){
+        User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}
+        }).then(function(){
+          Trip.create({
+            driver:req.body.driverName,
+            pass1:req.body.username
+          })
+        }).then(function(){
+          return res.send('passenger 1 added')
+        })
+      }else if (data.numberOfPassengers === 1){
+       Trip.findOne({where:{pass1:req.body.username}}).then(function(user){
+         if(!user){
+          User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}}).then(function(){
+            User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}
+            }).then(function(){
+              Trip.update({
+                pass2:req.body.username
+              },{where:{driver:req.body.driverName}
+            })
+              }).then(function(){
+                return res.send('passenger 2 added')
+              })
+           })
+         }
+       })
+      
+      }else if(data.numberOfPassengers === 2) {
+        Trip.findOne({where:{pass1:req.body.username}}).then(function(user1){
+          if(!user1){
+            Trip.findOne({where:{pass2:req.body.username}}).then(function(user2){
+              if(!user2){
+                User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}}).then(function(){
+                  User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}
+                  }).then(function(){
+                    Trip.update({
+                      pass3:req.body.username
+                    },{where:{driver:req.body.driverName}})
+                    }).then(function(){
+                      return res.send('passenger 3 added')
+                    })
+                  })
+              }
+            })
+          }
+        })
+      }else if(data.numberOfPassengers === 3) {
+        Trip.findOne({where:{pass1:req.body.username}}).then(function(user1){
+          if(!user1){
+            Trip.findOne({where:{pass2:req.body.username}}).then(function(user2){
+              if(!user2){
+                Trip.findOne({where:{pass3:req.body.username}}).then(function(user3){
+                  if(!user3){
+
+                    User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}}).then(function(){
+                      User.update({numberOfPassengers:data.numberOfPassengers+1},{where:{username:req.body.driverName}
+                      }).then(function(){
+                        Trip.update({
+                          pass4:req.body.username
+                        },{where:{driver:req.body.driverName}})
+                        }).then(function(){
+                          return res.send('passenger 4 added')
+                        })
+                      })
+
+                  }
+                })
+              }
+            })
+          }
+        })
+      }else{
+        console.log('full')
+        return res.send('full')
+      }
+
+    }).catch(function(err){
+      res.send(err)
+    })
+  })
+
+
+  app.get('/passengerss',(req,res) => {
+    // console.log(req.query._username)
+    // res.send(req.query._username)
+    var passengers=[]
+    // console.log(this.props.location.query._username)
+    Trip.findOne({where:{driver:req.query._username}}).then(function(driver){
+      if(driver.pass1 !== null){
+        User.findOne({where:{username:driver.pass1}}).then(function(pass){
+          passengers.push(pass)
+          if(driver.pass2 !== null){
+            User.findOne({where:{username:driver.pass2}}).then(function(pass){
+              passengers.push(pass)
+              if(driver.pass3 !== null){
+                User.findOne({where:{username:driver.pass3}}).then(function(pass){
+                  passengers.push(pass)
+                  if(driver.pass4 !== null){
+                    User.findOne({where:{username:driver.pass4}}).then(function(pass){
+                      passengers.push(pass)
+                    })
+                  }else{
+                    return res.send(passengers)
+                  }
+                })
+              }else{
+                return res.send(passengers)
+              }
+            })
+          }else{
+            return res.send(passengers)
+          }
+        })
+      }else{
+        return res.send(passengers)
+      }
+    })
+  })
   app.put("/main-mapm", authenticate, (req, res) => {
     const username = req.body.user.username;
 
@@ -246,4 +357,3 @@ User.update({payment:req.body.payment},
         return res.status(404).send({error: err});
     });
   });
->>>>>>> 150c46886133ffe8ca6ff15d9fdde3f696eb9650
