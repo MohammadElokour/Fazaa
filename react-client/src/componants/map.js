@@ -5,6 +5,10 @@ import {NavLink} from "react-router-dom"
 import Header from './signoutHeader';
 
 /*
+<<<<<<< HEAD
+    was about to put this essay into comments, but no one deserves and i'm dead tired.
+=======
+>>>>>>> 94e418bbf5b37865e800dce8e8a672f45ada74c9
 
      User now can see other users markers
      now the markers get updated on the db
